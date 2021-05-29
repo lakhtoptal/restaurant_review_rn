@@ -1,4 +1,4 @@
-package com.restaurantreviews;
+package com.lakh.restaurantreviews;
 
 import android.app.Application;
 import android.content.Context;

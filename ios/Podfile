@@ -3,6 +3,9 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
 target 'RestaurantReviews' do
   config = use_native_modules!
 
@@ -12,11 +15,6 @@ target 'RestaurantReviews' do
     :hermes_enabled => false
   )
 
-  target 'RestaurantReviewsTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
@@ -25,5 +23,10 @@ target 'RestaurantReviews' do
 
   post_install do |installer|
     react_native_post_install(installer)
+    installer.pods_project.targets.each do |target|
+     target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+     end
+    end
   end
 end
