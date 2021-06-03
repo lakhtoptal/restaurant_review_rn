@@ -1,34 +1,31 @@
-import { strings } from '@/localization';
+import { HttpClient } from './HttpClient';
 
-export class UserController {
-  static login(username, password) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (username && password) {
-          resolve({ username });
-        } else {
-          reject(new Error(strings.login.invalidCredentials));
-        }
-      }, 250);
-    });
+const moduleName = 'users';
+
+class UserController {
+  constructor() {
+    this.loginPath = `/${moduleName}/authenticate`;
+    this.registerPath = `/${moduleName}/register`;
   }
 
-  static register(payload) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const { username, password, firstName, lastName, role } = payload;
-        if (username && password && firstName && lastName && role) {
-          resolve({ username });
-        } else {
-          reject(new Error('Registeration failed.'));
-        }
-      }, 250);
+  login = async (username, password) => {
+    const result = await HttpClient.post(this.loginPath, {
+      username,
+      password,
     });
-  }
+    return Promise.resolve(result);
+  };
 
-  static logout() {
+  register = async (payload) => {
+    const result = await HttpClient.post(this.registerPath, payload);
+    return Promise.resolve(result);
+  };
+
+  logout = () => {
     return new Promise((resolve) => {
       setTimeout(resolve, 250);
     });
-  }
+  };
 }
+
+export default new UserController();

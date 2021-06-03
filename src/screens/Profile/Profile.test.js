@@ -1,11 +1,8 @@
-import { fireEvent, render } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import React from 'react';
-import { UserController } from '@/controllers';
 import { strings } from '@/localization';
 import { Profile } from '@/screens/Profile/Profile';
 import { withProviders } from '@/test-utils';
-
-jest.mock('@/controllers/UserController');
 
 describe('Profile', () => {
   it('should match the snapshot', () => {
@@ -22,17 +19,5 @@ describe('Profile', () => {
 
     expect(profileTitle).toBeTruthy();
     expect(logoutButton).toBeTruthy();
-  });
-
-  it('should logout the user', async () => {
-    const logoutSpy = jest.spyOn(UserController, 'logout');
-
-    const { getByText } = render(withProviders(<Profile />));
-
-    const logoutButton = getByText(strings.profile.logout);
-
-    fireEvent.press(logoutButton);
-
-    expect(logoutSpy).toHaveBeenCalledTimes(1);
   });
 });

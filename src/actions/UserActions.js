@@ -1,4 +1,4 @@
-import { UserController } from '@/controllers';
+import UserController from '@/controllers/UserController';
 
 export const TYPES = {
   CLEAR_STORE: 'CLEAR_STORE',
@@ -32,9 +32,9 @@ const registerRequest = () => ({
   payload: null,
 });
 
-const registerSuccess = (user) => ({
+const registerSuccess = () => ({
   type: TYPES.REGISTER_SUCCESS,
-  payload: { user },
+  payload: null,
 });
 
 const registerError = (error) => ({
@@ -60,8 +60,13 @@ export const login = (username, password) => async (dispatch) => {
 export const register = (payload) => async (dispatch) => {
   dispatch(registerRequest());
   try {
-    const user = await UserController.register(payload);
-    dispatch(registerSuccess(user));
+    const response = await UserController.register(payload);
+    if (response.status === 1) {
+      dispatch(registerSuccess());
+      dispatch(login(payload.username, payload.password));
+    } else {
+      dispatch(registerError('Some unknown error occured!'));
+    }
   } catch (error) {
     dispatch(registerError(error.message));
   }
