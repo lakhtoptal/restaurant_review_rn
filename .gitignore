@@ -60,3 +60,5 @@ buck-out/
 
 # Don't commit env file
 .env
+.env.development
+.env.production

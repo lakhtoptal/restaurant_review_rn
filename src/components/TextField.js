@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
   input: {
     paddingHorizontal: spacing.xs,
+    padding: 0,
   },
   label: {
     position: 'absolute',

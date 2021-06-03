@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { API_URL } from 'react-native-dotenv';
 import { strings } from '@/localization';
 
 const client = axios.create({
-  baseURL: 'API_BASE_URL',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

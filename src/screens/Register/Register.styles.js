@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: spacing.m,
-    marginTop: 80,
+    marginTop: 20,
   },
   formContainer: {
     borderRadius: 5,
@@ -19,5 +19,14 @@ export const styles = StyleSheet.create({
   },
   submitButton: {
     marginTop: spacing.m,
+  },
+  label: {
+    left: spacing.xs,
+    marginBottom: spacing.xs,
+  },
+  dropDownPicker: {
+    height: 40,
+    borderWidth: 0,
+    marginBottom: spacing.m,
   },
 });
