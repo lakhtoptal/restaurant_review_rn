@@ -4,7 +4,6 @@ const extensions = ['.android.js', '.ios.js', '.js', '.json', '.native'];
 const presets = ['module:metro-react-native-babel-preset'];
 const plugins = [
   ['module-resolver', { alias, extensions }],
-  'react-native-reanimated/plugin',
   [
     'dotenv-import',
     {
