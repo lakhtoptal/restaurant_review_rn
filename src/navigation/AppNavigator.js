@@ -3,7 +3,7 @@ import { useTheme } from '@react-navigation/native';
 import React from 'react';
 import { TabBarIcon } from '@/components';
 import { NAVIGATION } from '@/constants';
-import { HomeNavigator } from '@/navigation/HomeNavigator';
+import { RestaurantsNavigator } from '@/navigation/RestaurantsNavigator';
 import { ProfileNavigator } from '@/navigation/ProfileNavigator';
 
 const Tab = createBottomTabNavigator();
@@ -21,7 +21,7 @@ export function AppNavigator() {
         inactiveTintColor: colors.inactiveTab,
       }}
     >
-      <Tab.Screen name={NAVIGATION.home} component={HomeNavigator} />
+      <Tab.Screen name={NAVIGATION.restaurants} component={RestaurantsNavigator} />
       <Tab.Screen name={NAVIGATION.profile} component={ProfileNavigator} />
     </Tab.Navigator>
   );

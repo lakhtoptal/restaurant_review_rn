@@ -1,5 +1,6 @@
 export const NAVIGATION = {
-  home: 'Home',
+  restaurants: 'Restaurants',
+  restaurantDetail: 'Restaurant Detail',
   login: 'Login',
   register: 'Register',
   profile: 'Profile',

@@ -5,13 +5,14 @@ export const theme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#F8FAF9',
+      primary: '#F8F9FA',
       secondary: '#29434E',
       error: '#D32F2F',
       text: '#212121',
       border: '#212121',
       activeTab: '#1976D2',
       inactiveTab: '#757575',
+      background: '#fff',
     },
   },
   dark: {
@@ -25,6 +26,7 @@ export const theme = {
       border: '#FFFFFF',
       activeTab: '#4FC3F7',
       inactiveTab: '#FFFFFF',
+      background: '#000',
     },
   },
 };

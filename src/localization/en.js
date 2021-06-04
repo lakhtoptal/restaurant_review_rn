@@ -3,10 +3,11 @@ export const en = {
     loading: 'Loading',
     connectionError: 'Connection error',
   },
-  home: {
-    header: 'Home',
+  restaurants: {
+    header: 'Restaurants',
     message: 'Welcome',
     variant: 'App variant: ',
+    noRestaurant: 'No restaurant found...',
   },
   authentication: {
     firstName: 'First Name',

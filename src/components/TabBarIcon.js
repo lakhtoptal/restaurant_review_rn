@@ -1,22 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Image } from 'react-native';
-import Assets from '@/assets';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { NAVIGATION } from '@/constants';
 
 export function TabBarIcon({ color, routeName }) {
+  const iconSize = 25;
+
   const tabIcon = {
-    [NAVIGATION.home]: Assets().homeIcon,
-    [NAVIGATION.profile]: Assets().settingsIcon,
+    [NAVIGATION.restaurants]: (
+      <Ionicon name="ios-restaurant-outline" size={iconSize} color={color} />
+    ),
+    [NAVIGATION.profile]: <FontAwesome name="user-circle" size={iconSize} color={color} />,
   };
 
-  return (
-    <Image
-      accessibilityIgnoresInvertColors
-      source={tabIcon[routeName]}
-      style={{ tintColor: color }}
-    />
-  );
+  return tabIcon[routeName];
 }
 
 TabBarIcon.propTypes = {
