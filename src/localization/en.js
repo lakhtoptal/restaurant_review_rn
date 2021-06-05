@@ -3,11 +3,21 @@ export const en = {
     loading: 'Loading',
     connectionError: 'Connection error',
   },
-  restaurants: {
-    header: 'Restaurants',
-    message: 'Welcome',
-    variant: 'App variant: ',
+  navigation: {
+    restaurants: 'Restaurants',
+    restaurantDetail: 'Restaurant Detail',
+    login: 'Login',
+    register: 'Register',
+    profile: 'Profile',
+  },
+  restaurant: {
     noRestaurant: 'No restaurant found...',
+    noReview: 'No review found...',
+  },
+  commentBox: {
+    writeComment: 'Write a comment...',
+    cancel: 'Cancel',
+    submit: 'Submit',
   },
   authentication: {
     firstName: 'First Name',

@@ -4,7 +4,7 @@ import { SafeAreaView, Text, useColorScheme, View } from 'react-native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useRegisterForm } from './hooks/useRegisterForm';
+import { useRegisterForm } from '../../hooks/useRegisterForm';
 import { register, TYPES } from '@/actions/UserActions';
 import { Button, ErrorView, TextField } from '@/components';
 import { strings } from '@/localization';
@@ -12,7 +12,7 @@ import { styles } from '@/screens/Register/Register.styles';
 import { errorsSelector } from '@/selectors/ErrorSelectors';
 import { isLoadingSelector } from '@/selectors/StatusSelectors';
 import { shadow } from '@/theme';
-import PlatformHelper from '@/constants/platformHelper';
+import { PlatformHelper } from '@/constants';
 
 export function Register() {
   const [formError, setFormError] = useState('');

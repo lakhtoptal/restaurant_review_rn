@@ -4,5 +4,6 @@ export { TabBarIcon } from '@/components/TabBarIcon';
 export { TextField } from '@/components/TextField';
 export { TextLabel } from '@/components/TextLabel';
 export { NoItemsView } from '@/components/NoItemsView';
-export { RestaurantList } from '@/components/Restaurant/RestaurantList';
-export { RestaurantInfo } from '@/components/Restaurant/RestaurantInfo';
+export { Restaurant } from '@/components/Restaurant';
+export { RestaurantReview } from '@/components/RestaurantReview';
+export { CommentBox } from '@/components/CommentBox';

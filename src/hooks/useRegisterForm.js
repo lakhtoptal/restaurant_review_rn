@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { validateRegisterForm } from '../constants';
 import { strings } from '@/localization';
+import { validateRegisterForm } from '@/constants';
 
 export const useRegisterForm = () => {
   const [firstName, setFirstName] = useState('');

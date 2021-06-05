@@ -1,7 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, ViewPropTypes } from 'react-native';
 import { spacing } from '@/theme';
 
 const styles = StyleSheet.create({
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function TextField({ onBlur, onFocus, placeholder, value, ...rest }) {
+export function TextField({ containerStyle, onBlur, onFocus, placeholder, value, ...rest }) {
   const { colors } = useTheme();
 
   const placeholderStyle = {
@@ -31,8 +31,8 @@ export function TextField({ onBlur, onFocus, placeholder, value, ...rest }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={[styles.label, placeholderStyle]}>{placeholder}</Text>
+    <View style={[styles.container, containerStyle]}>
+      {placeholder && <Text style={[styles.label, placeholderStyle]}>{placeholder}</Text>}
       <TextInput style={[styles.input, { color: colors.text }]} value={value} {...rest} />
     </View>
   );
@@ -41,6 +41,7 @@ export function TextField({ onBlur, onFocus, placeholder, value, ...rest }) {
 TextField.propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   value: PropTypes.string,
+  containerStyle: ViewPropTypes.style,
 };

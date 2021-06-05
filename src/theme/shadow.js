@@ -15,4 +15,14 @@ export const shadow = StyleSheet.create({
       height: 2,
     },
   },
+  top: {
+    shadowRadius: 2,
+    shadowOpacity: 0.075,
+    shadowOffset: {
+      width: 0,
+      height: -3,
+    },
+    shadowColor: '#000000',
+    elevation: 4,
+  },
 });

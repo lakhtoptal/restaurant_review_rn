@@ -1,8 +1,8 @@
 import { useNavigation, useTheme } from '@react-navigation/native';
 import React from 'react';
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { createStyles } from '@/screens/Restaurants/Restaurants.styles';
-import { NoItemsView, RestaurantList } from '@/components';
+import { NoItemsView, Restaurant } from '@/components';
 import { NAVIGATION } from '@/constants';
 import { strings } from '@/localization';
 
@@ -15,6 +15,18 @@ export const Restaurants = () => {
       name: 'Punjab Food Corner',
       description: 'PBC at St Marry',
       id: '1',
+      reviews: [
+        {
+          title: 'Great restaurant',
+          rating: 5,
+          id: '1',
+        },
+        {
+          title: 'Bad restaurant',
+          rating: 2,
+          id: '2',
+        },
+      ],
     },
     {
       name: 'KFC',
@@ -41,9 +53,15 @@ export const Restaurants = () => {
   return (
     <View style={styles.container}>
       {data.length ? (
-        <RestaurantList data={data} onRestaurantClick={onRestaurantClick} />
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <Restaurant restuarantInfo={item} onRestaurantClick={onRestaurantClick} />
+          )}
+          keyExtractor={(item) => item.id}
+        />
       ) : (
-        <NoItemsView text={strings.restaurants.noRestaurant} />
+        <NoItemsView text={strings.restaurant.noRestaurant} />
       )}
     </View>
   );
