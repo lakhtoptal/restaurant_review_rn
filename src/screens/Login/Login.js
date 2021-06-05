@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { login, TYPES } from '@/actions/UserActions';
+import { login, TYPES } from '@/state/actions/UserActions';
 import { Button, ErrorView, TextField } from '@/components';
 import { strings } from '@/localization';
 import { styles } from '@/screens/Login/Login.styles';
-import { errorsSelector } from '@/selectors/ErrorSelectors';
-import { isLoadingSelector } from '@/selectors/StatusSelectors';
+import { errorsSelector } from '@/state/selectors/ErrorSelectors';
+import { isLoadingSelector } from '@/state/selectors/StatusSelectors';
 import { shadow } from '@/theme';
 import { NAVIGATION } from '@/constants';
 

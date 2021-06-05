@@ -3,7 +3,7 @@ import { hide } from 'react-native-bootsplash';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { RootNavigator } from '@/navigation';
-import { persistor, store } from '@/store';
+import { persistor, store } from '@/state/store';
 
 export function App() {
   return (

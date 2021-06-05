@@ -1,4 +1,4 @@
-import { TYPES } from '@/actions/GlobalActions';
+import { TYPES } from '@/state/actions/GlobalActions';
 import { STATUS } from '@/constants';
 
 const { ERROR, LOADING, NOT_STARTED, SUCCESS } = STATUS;
