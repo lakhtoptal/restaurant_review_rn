@@ -5,6 +5,7 @@ export const en = {
   },
   navigation: {
     restaurants: 'Restaurants',
+    createRestaurant: 'Create a restaurant',
     restaurantDetail: 'Restaurant Detail',
     login: 'Login',
     register: 'Register',
@@ -13,6 +14,14 @@ export const en = {
   restaurant: {
     noRestaurant: 'No restaurant found...',
     noReview: 'No review found...',
+    me: 'Me',
+    reply: 'Reply',
+  },
+  createRestaurant: {
+    name: 'Name',
+    nameHint: 'Enter restaurant name',
+    description: 'Description',
+    descriptionHint: 'Enter retaurant description',
   },
   commentBox: {
     writeComment: 'Write a comment...',

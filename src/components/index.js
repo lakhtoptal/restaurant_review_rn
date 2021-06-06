@@ -7,3 +7,4 @@ export { NoItemsView } from '@/components/NoItemsView';
 export { Restaurant } from '@/components/Restaurant';
 export { RestaurantReview } from '@/components/RestaurantReview';
 export { CommentBox } from '@/components/CommentBox';
+export { Rating } from '@/components/Rating';

@@ -1,12 +1,21 @@
 import axios from 'axios';
 import { API_URL } from 'react-native-dotenv';
 import { strings } from '@/localization';
+import { store } from '@/state/store';
 
 const client = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+client.interceptors.request.use((req) => {
+  if (store.getState().user) {
+    const token = store.getState().user.token;
+    req.headers.Authorization = `Bearer ${token}`;
+  }
+  return req;
 });
 
 client.interceptors.response.use(

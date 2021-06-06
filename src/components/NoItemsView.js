@@ -1,28 +1,35 @@
+import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TextLabel } from './TextLabel';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  label: {
-    textAlign: 'center',
-    color: '#000',
-    fontSize: 25,
-    fontWeight: 'bold',
-  },
-});
+const createStyles = ({ colors }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    label: (error) => ({
+      textAlign: 'center',
+      color: error ? colors.error : colors.text,
+      fontSize: 25,
+      fontWeight: 'bold',
+    }),
+  });
 
-export const NoItemsView = ({ text }) => (
-  <View style={styles.container}>
-    <TextLabel style={styles.label} text={text} />
-  </View>
-);
+export const NoItemsView = ({ text, isError }) => {
+  const styles = createStyles(useTheme());
+
+  return (
+    <View style={styles.container}>
+      <TextLabel style={styles.label(isError)} text={text} />
+    </View>
+  );
+};
 
 NoItemsView.propTypes = {
   text: PropTypes.string,
+  isError: PropTypes.bool,
 };

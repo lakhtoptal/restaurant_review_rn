@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRoute, useTheme } from '@react-navigation/native';
 import { View, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { createStyles } from './RestaurantDetail.styles';
 import { CommentBox, NoItemsView, RestaurantReview, TextLabel } from '@/components';
 import { strings } from '@/localization';
@@ -10,8 +9,13 @@ export const RestaurantDetail = () => {
   const [reviewToReply, setReviewToReply] = useState(null);
 
   const styles = createStyles(useTheme());
-  const { data } = useRoute().params;
-  const { name, description, reviews } = data;
+  const params = useRoute().params;
+
+  if (!params || !params.data) {
+    return <></>;
+  }
+
+  const { name, description, reviews } = params.data;
 
   const onReply = (review) => {
     setReviewToReply(review);
@@ -32,7 +36,12 @@ export const RestaurantDetail = () => {
         <FlatList
           data={reviews}
           renderItem={({ item }) => (
-            <RestaurantReview review={item} onReply={onReply} reviewToReply={reviewToReply} />
+            <RestaurantReview
+              review={item}
+              restaurant={params.data}
+              onReply={onReply}
+              reviewToReply={reviewToReply}
+            />
           )}
           keyExtractor={(item) => item.id}
         />
@@ -44,11 +53,6 @@ export const RestaurantDetail = () => {
   );
 };
 
-export const navigationOptions =
-  (theme) =>
-  ({ navigation, route }) => ({
-    title: route.params.data.name,
-    headerLeft: () => (
-      <Icon name="arrow-back" size={25} color={theme.colors.text} onPress={navigation.goBack} />
-    ),
-  });
+export const navigationOptions = ({ route }) => ({
+  title: route.params && route.params.data.name,
+});
