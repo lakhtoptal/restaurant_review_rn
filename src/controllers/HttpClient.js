@@ -23,11 +23,11 @@ client.interceptors.response.use(
 );
 
 const setAuthorization = (token) => {
-  client.defaults.headers.common.authorization = token;
+  client.defaults.headers.Authorization = `Bearer ${token}`;
 };
 
 const clearAuthorization = () => {
-  delete client.defaults.headers.common.authorization;
+  delete client.defaults.headers.Authorization;
 };
 
 export const HttpClient = { ...client, setAuthorization, clearAuthorization };

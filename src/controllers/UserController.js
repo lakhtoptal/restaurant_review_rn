@@ -1,9 +1,11 @@
+import ApiController from './ApiController';
 import { HttpClient } from './HttpClient';
 
-const moduleName = 'users';
-
-class UserController {
+class UserController extends ApiController {
   constructor() {
+    const moduleName = 'users';
+    super(moduleName);
+    this.userPath = `/${moduleName}`;
     this.loginPath = `/${moduleName}/authenticate`;
     this.registerPath = `/${moduleName}/register`;
   }

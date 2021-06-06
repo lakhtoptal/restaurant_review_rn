@@ -5,6 +5,7 @@ import { createStyles } from '@/screens/Restaurants/Restaurants.styles';
 import { NoItemsView, Restaurant } from '@/components';
 import { NAVIGATION } from '@/constants';
 import { strings } from '@/localization';
+import { RestaurantController } from '@/controllers';
 
 export const Restaurants = () => {
   const navigation = useNavigation();
