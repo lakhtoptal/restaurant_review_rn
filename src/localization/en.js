@@ -21,6 +21,12 @@ export const en = {
     addReview: 'Add review',
     enterText: 'Enter Text',
     textValidation: 'Please enter comment.',
+    deleteAlert: {
+      title: 'Confirm',
+      message: 'Are you sure, you want to delete this restaurant?',
+      delete: 'Delete',
+      cancel: 'Cancel',
+    },
   },
   createRestaurant: {
     name: 'Name',

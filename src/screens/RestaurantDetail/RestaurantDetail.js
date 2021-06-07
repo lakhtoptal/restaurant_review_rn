@@ -1,9 +1,8 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState } from 'react';
 import { View, FlatList } from 'react-native';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
-import Feather from 'react-native-vector-icons/Feather';
+import { useRoute, useTheme } from '@react-navigation/native';
 import { createStyles } from './RestaurantDetail.styles';
 import {
   Button,
@@ -14,15 +13,11 @@ import {
   TextLabel,
 } from '@/components';
 import { strings } from '@/localization';
-import { NAVIGATION } from '@/constants';
-import {
-  getUserSelector,
-  isAdminSelector,
-  isPublicUserSelector,
-} from '@/state/selectors/UserSelectors';
+import { getUserSelector, isPublicUserSelector } from '@/state/selectors/UserSelectors';
 import { findRestaurant } from '@/state/selectors/RestaurantSelectors';
 import { upsertComment } from '@/state/actions/CommentActions';
 import { upsertReview } from '@/state/actions/ReviewActions';
+import { useRestaurantDetailNav } from '@/hooks';
 
 export const RestaurantDetail = () => {
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
@@ -31,35 +26,16 @@ export const RestaurantDetail = () => {
   const { colors } = useTheme();
   const styles = createStyles({ colors });
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const user = useSelector(getUserSelector);
-  const isAdmin = useSelector(isAdminSelector);
   const isPublicUser = useSelector(isPublicUserSelector);
   const params = useRoute().params;
   const restaurant = useSelector(findRestaurant(params.data.id));
   const { name, description, reviews } = restaurant;
 
+  // Show navigation options.
+  useRestaurantDetailNav(restaurant, colors);
+
   const enableReview = isPublicUser && !_.find(reviews, (e) => e.user.id === user.id);
-
-  useLayoutEffect(() => {
-    const updateRestaurantClick = () => {
-      navigation.navigate(NAVIGATION.createRestaurant, { data: restaurant });
-    };
-
-    navigation.setOptions({
-      title: restaurant.name,
-      headerRight: () =>
-        isAdmin && (
-          <Feather
-            name="edit"
-            size={24}
-            color={colors.text}
-            backgroundColor="transparent"
-            onPress={updateRestaurantClick}
-          />
-        ),
-    });
-  }, [navigation, isAdmin, colors, restaurant]);
 
   // Reply actions
   const onReply = (review) => {

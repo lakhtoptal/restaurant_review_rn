@@ -67,3 +67,13 @@ export const upsertRestaurant = (payload, isUpdate) => async (dispatch) => {
     return false;
   }
 };
+
+export const deleteRestaurant = (id) => async (dispatch) => {
+  try {
+    await RestaurantController.delete(id);
+    dispatch(getRestaurantList());
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
