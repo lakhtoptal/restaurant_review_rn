@@ -7,6 +7,9 @@ export const createStyles = ({ colors }) =>
       backgroundColor: colors.background,
       flex: 1,
     },
+    listContainer: {
+      flexGrow: 1,
+    },
     infoContainer: {
       justifyContent: 'center',
       backgroundColor: colors.background,

@@ -6,6 +6,7 @@ export const en = {
   navigation: {
     restaurants: 'Restaurants',
     createRestaurant: 'Create a restaurant',
+    updateRestaurant: 'Update restaurant',
     restaurantDetail: 'Restaurant Detail',
     login: 'Login',
     register: 'Register',
@@ -19,9 +20,11 @@ export const en = {
   },
   createRestaurant: {
     name: 'Name',
-    nameHint: 'Enter restaurant name',
     description: 'Description',
-    descriptionHint: 'Enter retaurant description',
+    formError: 'Please enter',
+    create: 'Create Restaurant',
+    update: 'Update Restaurant',
+    nameValidate: 'Restaurant Name should be in between 2-50 characters in length',
   },
   commentBox: {
     writeComment: 'Write a comment...',
@@ -30,13 +33,9 @@ export const en = {
   },
   authentication: {
     firstName: 'First Name',
-    firstNameHint: 'Enter your first name',
     lastName: 'Last Name',
-    lastNameHint: 'Enter your last name',
     username: 'Username',
-    usernameHint: 'Enter your username',
     password: 'Password',
-    passwordHint: 'Enter your password',
     selectRole: 'Please select your role',
     validations: {
       firstName: 'First Name should be in between 2-50 characters in length',

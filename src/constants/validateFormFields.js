@@ -4,7 +4,46 @@ const validateFieldLength = (text, min = 2, max = 50) => {
   return text && text.length >= min && text.length < max;
 };
 
-export const validateRegisterForm = (fields) => {
+export const checkRestaurantFormErrors = (fields) => {
+  const { createRestaurant } = strings;
+
+  let emptyField = '';
+  if (!fields.restaurantName) {
+    emptyField = createRestaurant.name;
+  } else if (!fields.restaurantDescription) {
+    emptyField = createRestaurant.description;
+  }
+
+  if (emptyField) {
+    return `${createRestaurant.formError} ${emptyField.toLowerCase()}`;
+  }
+
+  // Field Validations
+  if (!validateFieldLength(fields.restaurantName)) {
+    return createRestaurant.nameValidate;
+  }
+
+  return false;
+};
+
+export const checkLoginFormErrors = (fields) => {
+  const { authentication } = strings;
+
+  let emptyField = '';
+  if (!fields.username) {
+    emptyField = authentication.username;
+  } else if (!fields.password) {
+    emptyField = authentication.password;
+  }
+
+  if (emptyField) {
+    return `${authentication.formError} ${emptyField.toLowerCase()}`;
+  }
+
+  return false;
+};
+
+export const checkRegisterFormErrors = (fields) => {
   const { authentication } = strings;
 
   let emptyField = '';

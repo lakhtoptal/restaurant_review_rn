@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { strings } from '@/localization';
-import { validateRegisterForm } from '@/constants';
+import { checkRegisterFormErrors } from '@/constants';
 
 export const useRegisterForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -19,25 +19,21 @@ export const useRegisterForm = () => {
       value: firstName,
       onChange: setFirstName,
       label: authentication.firstName,
-      hint: authentication.firstNameHint,
     },
     {
       value: lastName,
       onChange: setLastName,
       label: authentication.lastName,
-      hint: authentication.lastNameHint,
     },
     {
       value: username,
       onChange: setUsername,
       label: authentication.username,
-      hint: authentication.usernameHint,
     },
     {
       value: password,
       onChange: setPassword,
       label: authentication.password,
-      hint: authentication.passwordHint,
       secureTextEntry: true,
       textContentType: 'password',
     },
@@ -61,7 +57,7 @@ export const useRegisterForm = () => {
   const apiPayload = { firstName, lastName, username, password, role: userRole };
 
   const checkFormErrors = () =>
-    validateRegisterForm({
+    checkRegisterFormErrors({
       firstName,
       lastName,
       username,

@@ -7,7 +7,7 @@ import {
   CreateRestaurant,
   Restaurants,
   RestaurantDetail,
-  restaurantDetailNavOptions,
+  createRestaurantNavOptions,
 } from '@/screens';
 
 const Stack = createNativeStackNavigator();
@@ -21,14 +21,14 @@ export function RestaurantsNavigator() {
     <Stack.Navigator>
       <Stack.Screen name={NAVIGATION.restaurants} component={Restaurants} />
       <Stack.Screen
-        name={NAVIGATION.createRestaurant}
-        component={CreateRestaurant}
+        name={NAVIGATION.restaurantDetail}
+        component={RestaurantDetail}
         options={detailOption()}
       />
       <Stack.Screen
-        name={NAVIGATION.restaurantDetail}
-        component={RestaurantDetail}
-        options={(options) => detailOption(restaurantDetailNavOptions(options))(options)}
+        name={NAVIGATION.createRestaurant}
+        component={CreateRestaurant}
+        options={(options) => detailOption(createRestaurantNavOptions(options))(options)}
       />
     </Stack.Navigator>
   );

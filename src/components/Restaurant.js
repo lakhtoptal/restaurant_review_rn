@@ -12,8 +12,7 @@ const createStyles = ({ colors }) =>
       justifyContent: 'center',
       backgroundColor: colors.background,
       borderRadius: spacing.s,
-      margin: spacing.s,
-      marginBottom: 0,
+      margin: spacing.xs,
       minHeight: spacing.xl * 2,
       ...shadow.primary,
     },
@@ -30,6 +29,7 @@ const createStyles = ({ colors }) =>
     },
     descriptionLabel: {
       marginBottom: spacing.xs,
+      maxHeight: 120,
     },
   });
 
