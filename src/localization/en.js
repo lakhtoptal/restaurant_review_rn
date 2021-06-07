@@ -14,9 +14,13 @@ export const en = {
   },
   restaurant: {
     noRestaurant: 'No restaurant found...',
-    noReview: 'No review found...',
+    noReview: 'No review so far...',
     me: 'Me',
     reply: 'Reply',
+    reviewTitle: 'Write a review',
+    addReview: 'Add review',
+    enterText: 'Enter Text',
+    textValidation: 'Please enter comment.',
   },
   createRestaurant: {
     name: 'Name',

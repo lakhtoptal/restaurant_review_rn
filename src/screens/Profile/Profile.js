@@ -7,12 +7,12 @@ import { Button } from '@/components';
 import { strings } from '@/localization';
 import { styles } from '@/screens/Profile/Profile.styles';
 import { typography } from '@/theme';
-import { getUser } from '@/state/selectors/UserSelectors';
+import { getUserSelector } from '@/state/selectors/UserSelectors';
 
 export function Profile() {
   const { colors } = useTheme();
   const dispatch = useDispatch();
-  const user = useSelector(getUser);
+  const user = useSelector(getUserSelector);
 
   const logoutUser = () => {
     dispatch(logout());

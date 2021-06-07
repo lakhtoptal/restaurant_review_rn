@@ -27,4 +27,8 @@ export const createStyles = ({ colors }) =>
       fontWeight: 'bold',
       marginTop: spacing.m,
     },
+    reviewButton: {
+      margin: spacing.s,
+      flex: 1,
+    },
   });

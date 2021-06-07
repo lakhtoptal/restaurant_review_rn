@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppNavigator } from '@/navigation/AppNavigator';
 import { AuthNavigator } from '@/navigation/AuthNavigator';
-import { getUser } from '@/state/selectors/UserSelectors';
+import { getUserSelector } from '@/state/selectors/UserSelectors';
 import { theme } from '@/theme';
 
 export function RootNavigator() {
-  const user = useSelector(getUser);
+  const user = useSelector(getUserSelector);
   const scheme = useColorScheme();
 
   return (

@@ -2,7 +2,7 @@ import ApiController from './ApiController';
 
 class ReviewController extends ApiController {
   constructor() {
-    super('restaurants');
+    super('reviews');
   }
 }
 

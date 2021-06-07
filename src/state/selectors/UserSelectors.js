@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
 
-export const getUser = (state) => {
+export const getUserSelector = (state) => {
   return Object.keys(state.user).length > 0 ? state.user : null;
 };
 
-const getUserRole = createSelector(getUser, (user) => user.role);
+const getUserRole = createSelector(getUserSelector, (user) => user.role);
 
-export const isAdmin = createSelector(getUserRole, (userRole) => userRole === 'admin');
+export const isAdminSelector = createSelector(getUserRole, (userRole) => userRole === 'admin');
 
-export const isRestaurantowner = createSelector(getUserRole, (userRole) => userRole === 'owner');
+export const isOwnerSelector = createSelector(getUserRole, (userRole) => userRole === 'owner');
 
-export const isPublicUser = createSelector(getUserRole, (userRole) => userRole === 'user');
+export const isPublicUserSelector = createSelector(getUserRole, (userRole) => userRole === 'user');

@@ -7,7 +7,7 @@ import { Rating } from './Rating';
 import { TextLabel } from '@/components';
 import { spacing } from '@/theme';
 import { strings } from '@/localization';
-import { isRestaurantowner, getUser } from '@/state/selectors/UserSelectors';
+import { isOwnerSelector, getUserSelector } from '@/state/selectors/UserSelectors';
 
 const createStyles = ({ colors }) =>
   StyleSheet.create({
@@ -15,8 +15,7 @@ const createStyles = ({ colors }) =>
       justifyContent: 'center',
       backgroundColor: colors.primary,
       borderRadius: spacing.s,
-      margin: spacing.s,
-      marginBottom: 0,
+      margin: spacing.xs,
       minHeight: spacing.xl * 1.5,
     },
     textContainer: {
@@ -47,8 +46,8 @@ const createStyles = ({ colors }) =>
 export const RestaurantReview = ({ restaurant, review, onReply, reviewToReply }) => {
   const { title, comment } = review;
   const { colors } = useTheme();
-  const isOwner = useSelector(isRestaurantowner);
-  const user = useSelector(getUser);
+  const isOwner = useSelector(isOwnerSelector);
+  const user = useSelector(getUserSelector);
 
   const styles = createStyles({ colors });
 

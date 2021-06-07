@@ -39,7 +39,11 @@ export const CreateRestaurant = () => {
       return;
     }
 
-    const payload = { name: restaurantName, description: restaurantDescription };
+    const payload = {
+      id: params && params.data.id,
+      name: restaurantName,
+      description: restaurantDescription,
+    };
 
     dispatch(upsertRestaurant(payload, isUpdate)).then((success) => {
       if (success) {

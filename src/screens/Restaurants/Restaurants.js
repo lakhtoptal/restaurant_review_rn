@@ -9,7 +9,7 @@ import { NAVIGATION } from '@/constants';
 import { strings } from '@/localization';
 import { getRestaurantList, TYPES } from '@/state/actions/RestaurantActions';
 import { getRestaurants } from '@/state/selectors/RestaurantSelectors';
-import { isRestaurantowner } from '@/state/selectors/UserSelectors';
+import { isOwnerSelector } from '@/state/selectors/UserSelectors';
 import { isLoadingSelector } from '@/state/selectors/StatusSelectors';
 import { errorsSelector } from '@/state/selectors/ErrorSelectors';
 
@@ -19,7 +19,7 @@ export const Restaurants = () => {
   const { colors } = useTheme();
 
   const restaurantList = useSelector(getRestaurants);
-  const owner = useSelector(isRestaurantowner);
+  const owner = useSelector(isOwnerSelector);
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.RESTAURANT], state));
   const error = useSelector((state) => errorsSelector([TYPES.RESTAURANT], state));
 
