@@ -39,3 +39,13 @@ export const upsertComment = (payload, isUpdate) => async (dispatch) => {
     return false;
   }
 };
+
+export const deleteComment = (id) => async (dispatch) => {
+  try {
+    await CommentController.delete(id);
+    dispatch(getRestaurantList());
+    return true;
+  } catch (error) {
+    return false;
+  }
+};

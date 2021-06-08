@@ -15,13 +15,15 @@ import {
 import { strings } from '@/localization';
 import { getUserSelector, isPublicUserSelector } from '@/state/selectors/UserSelectors';
 import { findRestaurant } from '@/state/selectors/RestaurantSelectors';
-import { upsertComment } from '@/state/actions/CommentActions';
-import { upsertReview } from '@/state/actions/ReviewActions';
+import { deleteComment, upsertComment } from '@/state/actions/CommentActions';
+import { deleteReview, upsertReview } from '@/state/actions/ReviewActions';
 import { useRestaurantDetailNav } from '@/hooks';
 
 export const RestaurantDetail = () => {
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [reviewToReply, setReviewToReply] = useState(null);
+  const [updateReview, setUpdateReview] = useState(null);
+  const [updateComment, setUpdateComment] = useState(null);
 
   const { colors } = useTheme();
   const styles = createStyles({ colors });
@@ -37,25 +39,64 @@ export const RestaurantDetail = () => {
 
   const enableReview = isPublicUser && !_.find(reviews, (e) => e.user.id === user.id);
 
-  // Reply actions
+  // Reply/Comment actions
   const onReply = (review) => {
     setReviewToReply(review);
   };
 
-  const sendReply = (title) => {
-    dispatch(upsertComment({ title, review: reviewToReply.id }, false));
+  const onCancelComment = () => {
     setReviewToReply(null);
+    setUpdateComment(null);
+  };
+
+  const sendComment = (title) => {
+    let payload = { title };
+    if (updateComment) {
+      payload.id = updateComment.id;
+    } else {
+      payload.review = reviewToReply.id;
+    }
+    dispatch(upsertComment(payload, !!updateComment));
+    onCancelComment();
   };
 
   // Review actions
-  const closeReviewModal = () => setReviewModalOpen(false);
-  const sendReview = (title, rating) => {
-    closeReviewModal();
-    dispatch(upsertReview({ title, rating, restaurant: restaurant.id }, false));
+  const closeReviewModal = () => {
+    setReviewModalOpen(false);
+    setUpdateReview(null);
   };
 
-  const reviewButtonClicked = () => {
+  const sendReview = (title, rating) => {
+    let payload = { title, rating };
+    if (updateReview) {
+      payload.id = updateReview.id;
+    } else {
+      payload.restaurant = restaurant.id;
+    }
+    dispatch(upsertReview(payload, !!updateReview));
+    closeReviewModal();
+  };
+
+  const reviewButtonPressed = () => {
     setReviewModalOpen(true);
+  };
+
+  // Update/Delete: Admin controls.
+  const onUpdate = (object, isReview) => {
+    if (isReview) {
+      setUpdateReview(object);
+      setReviewModalOpen(true);
+    } else {
+      setUpdateComment(object);
+    }
+  };
+
+  const onDelete = (object, isReview) => {
+    if (isReview) {
+      dispatch(deleteReview(object.id));
+    } else {
+      dispatch(deleteComment(object.id));
+    }
   };
 
   return (
@@ -71,7 +112,7 @@ export const RestaurantDetail = () => {
         ListFooterComponent={() =>
           enableReview ? (
             <View style={styles.reviewButton}>
-              <Button onPress={reviewButtonClicked} title={strings.restaurant.reviewTitle} />
+              <Button onPress={reviewButtonPressed} title={strings.restaurant.reviewTitle} />
             </View>
           ) : (
             <></>
@@ -81,17 +122,33 @@ export const RestaurantDetail = () => {
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <RestaurantReview
+            activeComment={updateComment}
+            activeReview={updateReview || reviewToReply}
             review={item}
             restaurant={restaurant}
             onReply={onReply}
-            reviewToReply={reviewToReply}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
           />
         )}
         ListEmptyComponent={() => <NoItemsView text={strings.restaurant.noReview} />}
         keyExtractor={(item) => item.id}
       />
-      {reviewToReply && <CommentBox onCancel={setReviewToReply} onSubmit={sendReply} />}
-      <ReviewModal visible={reviewModalOpen} onClose={closeReviewModal} onSubmit={sendReview} />
+      {(reviewToReply || updateComment) && (
+        <CommentBox
+          onCancel={onCancelComment}
+          onSubmit={sendComment}
+          value={updateComment ? updateComment.title : ''}
+        />
+      )}
+      <ReviewModal
+        visible={reviewModalOpen}
+        onClose={closeReviewModal}
+        onSubmit={sendReview}
+        isUpdate={!!updateReview}
+        initialRating={updateReview ? updateReview.rating : 1}
+        initialText={updateReview ? updateReview.title : ''}
+      />
     </>
   );
 };

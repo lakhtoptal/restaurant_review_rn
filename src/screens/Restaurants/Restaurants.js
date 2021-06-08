@@ -26,7 +26,7 @@ export const Restaurants = () => {
   const styles = createStyles({ colors });
 
   useLayoutEffect(() => {
-    const createRestaurantClick = () => {
+    const createRestaurantPress = () => {
       navigation.navigate(NAVIGATION.createRestaurant);
     };
 
@@ -38,7 +38,7 @@ export const Restaurants = () => {
             size={24}
             color={colors.text}
             backgroundColor="transparent"
-            onPress={createRestaurantClick}
+            onPress={createRestaurantPress}
           />
         ),
     });
@@ -48,7 +48,7 @@ export const Restaurants = () => {
     dispatch(getRestaurantList());
   }, [dispatch]);
 
-  const onRestaurantClick = (restaurant) => {
+  const onRestaurantPress = (restaurant) => {
     navigation.navigate(NAVIGATION.restaurantDetail, { data: restaurant });
   };
 
@@ -62,7 +62,7 @@ export const Restaurants = () => {
         contentContainerStyle={styles.listContainer}
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         renderItem={({ item }) => (
-          <Restaurant restuarantInfo={item} onRestaurantClick={onRestaurantClick} />
+          <Restaurant restuarantInfo={item} onRestaurantPress={onRestaurantPress} />
         )}
         ListEmptyComponent={() => (
           <NoItemsView

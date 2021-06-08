@@ -16,11 +16,11 @@ export const useRestaurantDetailNav = (restaurant, colors) => {
   const isAdmin = useSelector(isAdminSelector);
 
   useLayoutEffect(() => {
-    const updateRestaurantClick = () => {
+    const updateRestaurantPress = () => {
       navigation.navigate(NAVIGATION.createRestaurant, { data: restaurant });
     };
 
-    const deleteRestaurantClick = () => {
+    const deleteRestaurantPress = () => {
       const { deleteAlert } = strings.restaurant;
       Alert.alert(deleteAlert.title, deleteAlert.message, [
         {
@@ -46,13 +46,13 @@ export const useRestaurantDetailNav = (restaurant, colors) => {
       headerRight: () =>
         isAdmin && (
           <>
-            <Feather name="edit" size={24} color={colors.text} onPress={updateRestaurantClick} />
+            <Feather name="edit" size={24} color={colors.text} onPress={updateRestaurantPress} />
             <Spacer />
             <AntDesign
               name="delete"
               size={24}
               color={colors.text}
-              onPress={deleteRestaurantClick}
+              onPress={deleteRestaurantPress}
             />
           </>
         ),

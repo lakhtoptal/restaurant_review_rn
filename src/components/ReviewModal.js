@@ -1,6 +1,6 @@
 import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, SafeAreaView, StyleSheet, TextInput, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -54,14 +54,24 @@ const createStyles = ({ colors }) =>
     },
   });
 
-export const ReviewModal = ({ visible, onClose, onSubmit }) => {
-  const [rating, setRating] = useState(1);
-  const [text, setText] = useState('');
+export const ReviewModal = ({
+  visible,
+  onClose,
+  onSubmit,
+  isUpdate,
+  initialText,
+  initialRating,
+}) => {
+  const [rating, setRating] = useState(initialRating);
+  const [text, setText] = useState(initialText);
   const [formError, setFormError] = useState('');
   const { colors } = useTheme();
   const styles = createStyles({ colors });
 
-  const addReviewClicked = () => {
+  useEffect(() => setRating(initialRating), [initialRating]);
+  useEffect(() => setText(initialText), [initialText]);
+
+  const addReviewPressed = () => {
     setFormError('');
 
     if (!text) {
@@ -104,7 +114,10 @@ export const ReviewModal = ({ visible, onClose, onSubmit }) => {
               <Spacer />
               <ErrorView errors={[formError]} />
               {formError ? <Spacer /> : <></>}
-              <Button title={strings.restaurant.addReview} onPress={addReviewClicked} />
+              <Button
+                title={isUpdate ? strings.restaurant.updateReview : strings.restaurant.addReview}
+                onPress={addReviewPressed}
+              />
             </View>
           </View>
         </KeyboardAwareScrollView>
@@ -117,4 +130,7 @@ ReviewModal.propTypes = {
   visible: PropTypes.bool,
   onClose: PropTypes.func,
   onSubmit: PropTypes.func,
+  isUpdate: PropTypes.bool,
+  initialRating: PropTypes.number.isRequired,
+  initialText: PropTypes.string.isRequired,
 };

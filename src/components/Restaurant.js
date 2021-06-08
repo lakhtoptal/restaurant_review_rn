@@ -33,7 +33,7 @@ const createStyles = ({ colors }) =>
     },
   });
 
-export const Restaurant = ({ restuarantInfo, onRestaurantClick }) => {
+export const Restaurant = ({ restuarantInfo, onRestaurantPress }) => {
   const { name, description, reviews } = restuarantInfo;
   const theme = useTheme();
   const styles = createStyles(theme);
@@ -42,7 +42,7 @@ export const Restaurant = ({ restuarantInfo, onRestaurantClick }) => {
   const rating = ratingSum / reviews.length || 0;
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => onRestaurantClick(restuarantInfo)}>
+    <TouchableOpacity style={styles.container} onPress={() => onRestaurantPress(restuarantInfo)}>
       <View style={styles.textContainer}>
         <View style={styles.nameContainer}>
           <TextLabel text={name} style={styles.nameLabel} />
@@ -59,5 +59,5 @@ Restaurant.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
   }),
-  onRestaurantClick: PropTypes.func,
+  onRestaurantPress: PropTypes.func,
 };

@@ -39,3 +39,13 @@ export const upsertReview = (payload, isUpdate) => async (dispatch) => {
     return false;
   }
 };
+
+export const deleteReview = (id) => async (dispatch) => {
+  try {
+    await ReviewController.delete(id);
+    dispatch(getRestaurantList());
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
