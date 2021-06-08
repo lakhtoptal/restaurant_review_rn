@@ -1,81 +1,75 @@
 import { UserController } from '@/controllers';
 
 export const TYPES = {
-  CLEAR_STORE: 'CLEAR_STORE',
-  LOGIN: 'LOGIN',
-  REGISTER: 'REGISTER',
-  LOGIN_REQUEST: 'LOGIN_REQUEST',
-  LOGIN_ERROR: 'LOGIN_ERROR',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  REGISTER_REQUEST: 'REGISTER_REQUEST',
-  REGISTER_SUCCESS: 'REGISTER_SUCCESS',
-  REGISTER_ERROR: 'REGISTER_ERROR',
+  USER: 'USER',
+  USER_REQUEST: 'USER_REQUEST',
+  USER_SUCCESS: 'USER_SUCCESS',
+  USER_ERROR: 'USER_ERROR',
+  UPDATE_USER: 'UPDATE_USER',
+  UPDATE_USER_REQUEST: 'UPDATE_USER_REQUEST',
+  UPDATE_USER_SUCCESS: 'UPDATE_USER_SUCCESS',
+  UPDATE_USER_ERROR: 'UPDATE_USER_ERROR',
 };
 
-const loginRequest = () => ({
-  type: TYPES.LOGIN_REQUEST,
+const getUserRequest = () => ({
+  type: TYPES.USER_REQUEST,
   payload: null,
 });
 
-const loginSuccess = (user) => ({
-  type: TYPES.LOGIN_SUCCESS,
-  payload: { user },
+const getUserSuccess = (list) => ({
+  type: TYPES.USER_SUCCESS,
+  payload: { list },
 });
 
-const loginError = (error) => ({
-  type: TYPES.LOGIN_ERROR,
+const getUserError = (error) => ({
+  type: TYPES.USER_ERROR,
   payload: { error },
 });
 
-const registerRequest = () => ({
-  type: TYPES.REGISTER_REQUEST,
+const updateUserRequest = () => ({
+  type: TYPES.UPDATE_USER_REQUEST,
   payload: null,
 });
 
-const registerSuccess = () => ({
-  type: TYPES.REGISTER_SUCCESS,
+const updateUserSuccess = () => ({
+  type: TYPES.UPDATE_USER_SUCCESS,
   payload: null,
 });
 
-const registerError = (error) => ({
-  type: TYPES.REGISTER_ERROR,
+const updateUserError = (error) => ({
+  type: TYPES.UPDATE_USER_ERROR,
   payload: { error },
 });
 
-const clearStore = () => ({
-  type: TYPES.CLEAR_STORE,
-  payload: null,
-});
-
-export const login = (username, password) => async (dispatch) => {
-  dispatch(loginRequest());
+export const getUserList = () => async (dispatch) => {
+  dispatch(getUserRequest());
   try {
-    const user = await UserController.login(username, password);
-    dispatch(loginSuccess(user));
+    const list = await UserController.getAll();
+    dispatch(getUserSuccess(list));
   } catch (error) {
-    dispatch(loginError(error.message));
+    dispatch(getUserError(error.message));
   }
 };
 
-export const register = (payload) => async (dispatch) => {
-  dispatch(registerRequest());
+export const updateUser = (payload) => async (dispatch) => {
+  dispatch(updateUserRequest());
   try {
-    const response = await UserController.register(payload);
-    if (response.status === 1) {
-      dispatch(registerSuccess());
-      dispatch(login(payload.username, payload.password));
-    } else {
-      dispatch(registerError('Some unknown error occured!'));
-    }
+    await UserController.update(payload);
+    dispatch(getUserList());
+    dispatch(updateUserSuccess());
+    return true;
   } catch (error) {
-    dispatch(registerError(error.message));
+    dispatch(updateUserError(error.message));
+    return false;
   }
 };
 
-export const logout = () => async (dispatch) => {
+export const deleteUser = (id) => async (dispatch) => {
   try {
-    await UserController.logout();
-  } finally {
-    dispatch(clearStore());
+    await UserController.delete(id);
+    dispatch(getUserList());
+    return true;
+  } catch (error) {
+    return false;
   }
 };

@@ -11,6 +11,7 @@ export function TabBarIcon({ color, routeName }) {
     [NAVIGATION.restaurants]: (
       <Ionicon name="ios-restaurant-outline" size={iconSize} color={color} />
     ),
+    [NAVIGATION.users]: <FontAwesome name="users" size={iconSize} color={color} />,
     [NAVIGATION.profile]: <FontAwesome name="user-circle" size={iconSize} color={color} />,
   };
 

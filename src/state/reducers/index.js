@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { TYPES } from '../actions/UserActions';
+import { TYPES } from '../actions/AuthenticationActions';
 import { errorReducer } from '@/state/reducers/ErrorReducer';
 import { restaurantReducer } from '@/state/reducers/RestaurantReducer';
 import { statusReducer } from '@/state/reducers/StatusReducer';

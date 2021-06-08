@@ -69,19 +69,19 @@ export const RestaurantReview = ({
     const { adminAlert } = strings.restaurant;
     Alert.alert(
       adminAlert.title,
-      (isReview ? adminAlert.messageReview : adminAlert.messageComment) + ':\n\n' + message,
+      `${isReview ? adminAlert.messageReview : adminAlert.messageComment}:\n\n${message}`,
       [
         {
-          text: adminAlert.delete,
+          text: strings.common.alert.delete,
           onPress: () => onDelete(object, isReview),
           style: 'destructive',
         },
         {
-          text: adminAlert.edit,
+          text: strings.common.alert.edit,
           onPress: () => onUpdate(object, isReview),
         },
         {
-          text: adminAlert.cancel,
+          text: strings.common.alert.cancel,
           style: 'cancel',
         },
       ]

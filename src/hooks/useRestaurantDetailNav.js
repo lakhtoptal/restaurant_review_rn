@@ -21,14 +21,14 @@ export const useRestaurantDetailNav = (restaurant, colors) => {
     };
 
     const deleteRestaurantPress = () => {
-      const { deleteAlert } = strings.restaurant;
-      Alert.alert(deleteAlert.title, deleteAlert.message, [
+      const { alert } = strings.common;
+      Alert.alert(alert.title, strings.restaurant.deleteMessage, [
         {
-          text: deleteAlert.cancel,
+          text: alert.cancel,
           style: 'cancel',
         },
         {
-          text: deleteAlert.delete,
+          text: alert.delete,
           onPress: () => {
             dispatch(deleteRestaurant(restaurant.id)).then((success) => {
               if (success) {

@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRoute } from '@react-navigation/core';
+import { useSelector } from 'react-redux';
+import _ from 'lodash';
 import { strings } from '@/localization';
-import { checkRegisterFormErrors } from '@/constants';
+import { checkUserFormErrors } from '@/constants';
+import { findUser } from '@/state/selectors/UserSelectors';
 
-export const useRegisterForm = () => {
+export const useUpsertUserForm = (isUpdate) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -11,7 +15,19 @@ export const useRegisterForm = () => {
   const [open, setOpen] = useState(false);
   const [userRole, setUserRole] = useState('');
 
+  const params = useRoute().params;
+  const user = useSelector(findUser(params ? params.user.id : ''));
+
   const { authentication } = strings;
+
+  useEffect(() => {
+    if (user && isUpdate) {
+      setFirstName(user.firstName);
+      setLastName(user.lastName);
+      setUsername(user.username);
+      setUserRole(user.role);
+    }
+  }, [user, isUpdate]);
 
   // Customized form fields array to render in text fields.
   const formFields = [
@@ -54,16 +70,22 @@ export const useRegisterForm = () => {
   };
 
   // Make sure keys should be same as used in backend api.
-  const apiPayload = { firstName, lastName, username, password, role: userRole };
+  let apiPayload = { ...user, firstName, lastName, username, password, role: userRole };
+  if (isUpdate && !password) {
+    apiPayload = _.omit(apiPayload, 'password');
+  }
 
   const checkFormErrors = () =>
-    checkRegisterFormErrors({
-      firstName,
-      lastName,
-      username,
-      password,
-      userRole,
-    });
+    checkUserFormErrors(
+      {
+        firstName,
+        lastName,
+        username,
+        password,
+        userRole,
+      },
+      isUpdate
+    );
 
   return { formFields, rolePicker, apiPayload, checkFormErrors };
 };

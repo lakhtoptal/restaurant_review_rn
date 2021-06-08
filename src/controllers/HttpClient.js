@@ -11,8 +11,8 @@ const client = axios.create({
 });
 
 client.interceptors.request.use((req) => {
-  if (store.getState().user) {
-    const token = store.getState().user.token;
+  if (store.getState().user.loggedInUser) {
+    const token = store.getState().user.loggedInUser.token;
     req.headers.Authorization = `Bearer ${token}`;
   }
   return req;

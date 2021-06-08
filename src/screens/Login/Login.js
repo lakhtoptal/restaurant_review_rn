@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { login, TYPES } from '@/state/actions/UserActions';
+import { login, TYPES } from '@/state/actions/AuthenticationActions';
 import { Button, ErrorView, FormContainer, TextField } from '@/components';
 import { strings } from '@/localization';
 import { styles } from '@/screens/Login/Login.styles';

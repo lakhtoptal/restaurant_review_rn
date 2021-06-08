@@ -1,7 +1,7 @@
 export { NAVIGATION } from '@/constants/navigation';
 export { STATUS } from '@/constants/status';
 export {
-  checkRegisterFormErrors,
+  checkUserFormErrors,
   checkLoginFormErrors,
   checkRestaurantFormErrors,
 } from '@/constants/validateFormFields';

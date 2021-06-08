@@ -11,3 +11,5 @@ export { Rating } from '@/components/Rating';
 export { FormContainer } from '@/components/FormContainer';
 export { ReviewModal } from '@/components/ReviewModal';
 export { Spacer } from '@/components/Spacer';
+export { UserView } from '@/components/UserView';
+export { UpsertUserForm } from '@/components/UpsertUserForm';

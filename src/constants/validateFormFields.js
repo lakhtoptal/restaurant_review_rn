@@ -43,7 +43,7 @@ export const checkLoginFormErrors = (fields) => {
   return false;
 };
 
-export const checkRegisterFormErrors = (fields) => {
+export const checkUserFormErrors = (fields, isUpdate) => {
   const { authentication } = strings;
 
   let emptyField = '';
@@ -53,7 +53,7 @@ export const checkRegisterFormErrors = (fields) => {
     emptyField = authentication.lastName;
   } else if (!fields.username) {
     emptyField = authentication.username;
-  } else if (!fields.password) {
+  } else if (!fields.password && !isUpdate) {
     emptyField = authentication.password;
   }
 
@@ -72,10 +72,10 @@ export const checkRegisterFormErrors = (fields) => {
   if (!validateFieldLength(fields.username)) {
     return validations.username;
   }
-  if (!validateFieldLength(fields.password, 0, 100)) {
+  if (!validateFieldLength(fields.password, 0, 100) && !isUpdate) {
     return validations.longPassword;
   }
-  if (!validateFieldLength(fields.password, 6, 100)) {
+  if (!validateFieldLength(fields.password, 6, 100) && !isUpdate) {
     return validations.shortPassword;
   }
 

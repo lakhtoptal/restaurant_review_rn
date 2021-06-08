@@ -2,15 +2,29 @@ export const en = {
   common: {
     loading: 'Loading',
     connectionError: 'Connection error',
+    alert: {
+      edit: 'Edit',
+      title: 'Confirm',
+      delete: 'Delete',
+      cancel: 'Cancel',
+    },
   },
   navigation: {
     restaurants: 'Restaurants',
     createRestaurant: 'Create a restaurant',
     updateRestaurant: 'Update restaurant',
     restaurantDetail: 'Restaurant Detail',
+    users: 'Users',
+    editUser: 'Edit User',
     login: 'Login',
     register: 'Register',
     profile: 'Profile',
+  },
+  user: {
+    role: 'Role',
+    username: 'Username',
+    noUserFound: 'No user found...',
+    deleteMessage: 'Are you sure, you want to delete this user?',
   },
   restaurant: {
     noRestaurant: 'No restaurant found...',
@@ -22,20 +36,12 @@ export const en = {
     updateReview: 'Update review',
     enterText: 'Enter Text',
     textValidation: 'Please enter comment.',
-    deleteAlert: {
-      title: 'Confirm',
-      message: 'Are you sure, you want to delete this restaurant?',
-      delete: 'Delete',
-      cancel: 'Cancel',
-    },
     adminAlert: {
       title: 'Edit or delete?',
       messageComment: 'You can either edit or delete this comment',
       messageReview: 'You can either edit or delete this review',
-      edit: 'Edit',
-      delete: 'Delete',
-      cancel: 'Cancel',
     },
+    deleteMessage: 'Are you sure, you want to delete this restaurant?',
   },
   createRestaurant: {
     name: 'Name',
