@@ -2,8 +2,7 @@ import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { Rating } from './Rating';
-import { TextLabel } from '@/components';
+import { StarRating, TextLabel } from '@/components';
 import { spacing } from '@/theme';
 import { strings } from '@/localization';
 
@@ -42,6 +41,9 @@ const createStyles = ({ colors, isSelected, isReview }) => {
       marginBottom: spacing.xs,
       ...textStyle,
     },
+    ratingContainer: {
+      marginLeft: 'auto',
+    },
   });
 };
 
@@ -61,7 +63,11 @@ export const CommentView = ({
       <View style={styles.textContainer}>
         <View style={styles.nameContainer}>
           <TextLabel text={commentObject.author} style={styles.nameLabel} />
-          {isReview && <Rating rating={commentObject.rating} />}
+          {isReview && (
+            <View style={styles.ratingContainer}>
+              <StarRating rating={commentObject.rating} readOnly />
+            </View>
+          )}
         </View>
         <TextLabel text={`${strings.review.visitLabel} ${formatDate}`} style={styles.dateLabel} />
         <TextLabel text={commentObject.title} style={styles.commentLabel} />

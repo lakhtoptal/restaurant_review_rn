@@ -22,7 +22,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TextField = ({ containerStyle, onBlur, onFocus, placeholder, value, ...rest }) => {
+export const TextField = ({
+  containerStyle,
+  onBlur,
+  onFocus,
+  placeholder,
+  value,
+  style,
+  ...rest
+}) => {
   const { colors } = useTheme();
 
   const placeholderStyle = {
@@ -33,7 +41,7 @@ export const TextField = ({ containerStyle, onBlur, onFocus, placeholder, value,
   return (
     <View style={[styles.container, containerStyle]}>
       {placeholder && <Text style={[styles.label, placeholderStyle]}>{placeholder}</Text>}
-      <TextInput style={[styles.input, { color: colors.text }]} value={value} {...rest} />
+      <TextInput style={[styles.input, { color: colors.text }, style]} value={value} {...rest} />
     </View>
   );
 };
@@ -44,4 +52,5 @@ TextField.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   containerStyle: ViewPropTypes.style,
+  style: TextInput.propTypes.style,
 };

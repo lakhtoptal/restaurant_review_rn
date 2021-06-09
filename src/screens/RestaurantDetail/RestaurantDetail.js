@@ -8,6 +8,7 @@ import {
   Button,
   CommentBox,
   NoItemsView,
+  RatingLabel,
   RestaurantReview,
   ReviewModal,
   TextLabel,
@@ -32,7 +33,7 @@ export const RestaurantDetail = () => {
   const isPublicUser = useSelector(isPublicUserSelector);
   const params = useRoute().params;
   const restaurant = useSelector(findRestaurant(params.data.id));
-  const { name, description, reviews } = restaurant;
+  const { name, description, reviews, numberOfRatings, averageRating } = restaurant;
 
   // Show navigation options.
   useRestaurantDetailNav(restaurant, colors);
@@ -103,7 +104,10 @@ export const RestaurantDetail = () => {
       <FlatList
         ListHeaderComponent={() => (
           <View style={styles.infoContainer}>
-            <TextLabel text={name} style={styles.nameLabel} />
+            <View style={styles.nameContainer}>
+              <TextLabel text={name} style={styles.nameLabel} />
+              {numberOfRatings > 0 && <RatingLabel rating={averageRating} />}
+            </View>
             <TextLabel text={description} />
             <TextLabel text={'Reviews:'} style={styles.reviewsLabel} />
           </View>

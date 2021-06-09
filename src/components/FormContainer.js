@@ -27,7 +27,8 @@ const createStyles = ({ colors }) =>
   });
 
 export const FormContainer = ({ children, containerStyle }) => {
-  const styles = createStyles(useTheme());
+  const { colors } = useTheme();
+  const styles = createStyles({ colors });
 
   return (
     <SafeAreaView style={styles.safeArea}>

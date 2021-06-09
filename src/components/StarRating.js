@@ -5,10 +5,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from '@react-navigation/native';
 import { spacing } from '@/theme';
 
-const createStyles = () =>
+const createStyles = (readOnly) =>
   StyleSheet.create({
     ratingContainer: {
-      marginVertical: spacing.s,
+      marginVertical: readOnly ? 0 : spacing.s,
       flexDirection: 'row',
     },
     ratingStyle: {
@@ -16,20 +16,20 @@ const createStyles = () =>
     },
   });
 
-export const RatingInput = ({ rating, setRating }) => {
+export const StarRating = ({ rating, setRating, readOnly }) => {
   const { colors } = useTheme();
-  const styles = createStyles();
+  const styles = createStyles(readOnly);
 
-  const ratingArray = Array.from(Array(Math.ceil(5)).keys());
+  const ratingArray = Array.from(Array(Math.ceil(readOnly ? rating : 5)).keys());
   return (
     <View style={styles.ratingContainer}>
       {ratingArray.map((e) => (
         <FontAwesome
           color={colors.text}
           name={e > rating - 1 ? 'star-o' : 'star'}
-          size={25}
+          size={readOnly ? 20 : 25}
           key={e}
-          onPress={() => setRating(e + 1)}
+          onPress={() => !readOnly && setRating(e + 1)}
           style={styles.ratingStyle}
         />
       ))}
@@ -37,7 +37,8 @@ export const RatingInput = ({ rating, setRating }) => {
   );
 };
 
-RatingInput.propTypes = {
+StarRating.propTypes = {
   rating: PropTypes.number,
   setRating: PropTypes.func,
+  readOnly: PropTypes.bool,
 };

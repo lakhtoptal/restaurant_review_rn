@@ -2,6 +2,7 @@ import { useNavigation, useTheme } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { FlatList, RefreshControl, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import _ from 'lodash';
 import { createStyles } from '@/screens/Restaurants/Restaurants.styles';
 import { NoItemsView, Restaurant } from '@/components';
 import { NAVIGATION } from '@/constants';
@@ -18,7 +19,7 @@ export const Restaurants = () => {
   const { colors } = useTheme();
   useRestaurantsNav(colors);
 
-  const restaurantList = useSelector(getRestaurants);
+  const restaurantList = _.orderBy(useSelector(getRestaurants), ['averageRating'], ['desc']);
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.RESTAURANT], state));
   const error = useSelector((state) => errorsSelector([TYPES.RESTAURANT], state));
 

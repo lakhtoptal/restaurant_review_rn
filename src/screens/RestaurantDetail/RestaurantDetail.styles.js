@@ -17,6 +17,10 @@ export const createStyles = ({ colors }) =>
       padding: spacing.s,
       ...shadow.primary,
     },
+    nameContainer: {
+      flexDirection: 'row',
+      marginBottom: spacing.xs,
+    },
     nameLabel: {
       fontSize: 18,
       fontWeight: '600',

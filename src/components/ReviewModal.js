@@ -6,11 +6,7 @@ import DatePicker from 'react-native-date-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
-import { TextLabel } from './TextLabel';
-import { Button } from './Button';
-import { RatingInput } from './RatingInput';
-import { ErrorView } from './ErrorView';
-import { Spacer } from './Spacer';
+import { Button, ErrorView, Spacer, StarRating, TextLabel } from '@/components';
 import { shadow, spacing } from '@/theme';
 import { strings } from '@/localization';
 import { PlatformHelper } from '@/constants';
@@ -102,7 +98,7 @@ export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData 
                 style={styles.closeButton}
               />
               <TextLabel text={strings.review.reviewTitle} style={styles.titleHeader} />
-              <RatingInput rating={rating} setRating={setRating} />
+              <StarRating rating={rating} setRating={setRating} />
               <Spacer />
               <TextInput
                 autoFocus
@@ -116,7 +112,13 @@ export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData 
               />
               <Spacer />
               <TextLabel text={strings.review.dateOfVisit} style={styles.visitLabel} />
-              <DatePicker date={date} onDateChange={setDate} mode="date" maximumDate={new Date()} />
+              <DatePicker
+                date={date}
+                onDateChange={setDate}
+                mode="date"
+                maximumDate={new Date()}
+                textColor={colors.text}
+              />
               <Spacer />
               <ErrorView errors={[formError]} />
               {formError ? <Spacer /> : <></>}
