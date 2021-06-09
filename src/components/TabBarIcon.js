@@ -4,7 +4,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { NAVIGATION } from '@/constants';
 
-export function TabBarIcon({ color, routeName }) {
+export const TabBarIcon = ({ color, routeName }) => {
   const iconSize = 25;
 
   const tabIcon = {
@@ -16,7 +16,7 @@ export function TabBarIcon({ color, routeName }) {
   };
 
   return tabIcon[routeName];
-}
+};
 
 TabBarIcon.propTypes = {
   color: PropTypes.string.isRequired,

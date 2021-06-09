@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function TextField({ containerStyle, onBlur, onFocus, placeholder, value, ...rest }) {
+export const TextField = ({ containerStyle, onBlur, onFocus, placeholder, value, ...rest }) => {
   const { colors } = useTheme();
 
   const placeholderStyle = {
@@ -36,7 +36,7 @@ export function TextField({ containerStyle, onBlur, onFocus, placeholder, value,
       <TextInput style={[styles.input, { color: colors.text }]} value={value} {...rest} />
     </View>
   );
-}
+};
 
 TextField.propTypes = {
   onBlur: PropTypes.func,

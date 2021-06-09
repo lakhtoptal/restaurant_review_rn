@@ -2,8 +2,10 @@ import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Modal, SafeAreaView, StyleSheet, TextInput, View } from 'react-native';
+import DatePicker from 'react-native-date-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import moment from 'moment';
 import { TextLabel } from './TextLabel';
 import { Button } from './Button';
 import { RatingInput } from './RatingInput';
@@ -44,6 +46,9 @@ const createStyles = ({ colors }) =>
       fontSize: 22,
       fontWeight: 'bold',
     },
+    visitLabel: {
+      fontSize: 18,
+    },
     descriptionField: {
       alignSelf: 'stretch',
       minHeight: 30,
@@ -54,31 +59,30 @@ const createStyles = ({ colors }) =>
     },
   });
 
-export const ReviewModal = ({
-  visible,
-  onClose,
-  onSubmit,
-  isUpdate,
-  initialText,
-  initialRating,
-}) => {
-  const [rating, setRating] = useState(initialRating);
-  const [text, setText] = useState(initialText);
+export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData }) => {
+  const [rating, setRating] = useState(1);
+  const [title, setTitle] = useState('');
   const [formError, setFormError] = useState('');
+  const [date, setDate] = useState(new Date());
   const { colors } = useTheme();
   const styles = createStyles({ colors });
 
-  useEffect(() => setRating(initialRating), [initialRating]);
-  useEffect(() => setText(initialText), [initialText]);
+  useEffect(() => {
+    if (initialData) {
+      setRating(initialData.rating);
+      setTitle(initialData.title);
+      setDate(moment(initialData.visitedDate).toDate());
+    }
+  }, [initialData]);
 
   const addReviewPressed = () => {
     setFormError('');
 
-    if (!text) {
-      setFormError(strings.restaurant.textValidation);
+    if (!title) {
+      setFormError(strings.review.titleValidation);
       return;
     }
-    onSubmit(text, rating);
+    onSubmit({ title, rating, visitedDate: date });
   };
 
   return (
@@ -97,25 +101,27 @@ export const ReviewModal = ({
                 size={30}
                 style={styles.closeButton}
               />
-              <TextLabel text={strings.restaurant.reviewTitle} style={styles.titleHeader} />
+              <TextLabel text={strings.review.reviewTitle} style={styles.titleHeader} />
               <RatingInput rating={rating} setRating={setRating} />
               <Spacer />
               <TextInput
                 autoFocus
-                autoCapitalize="none"
                 multiline
-                placeholder={strings.restaurant.enterText}
+                placeholder={strings.review.enterText}
                 placeholderTextColor={colors.placeholderText}
                 style={styles.descriptionField}
-                value={text}
-                onChangeText={setText}
+                value={title}
+                onChangeText={setTitle}
                 maxLength={500}
               />
+              <Spacer />
+              <TextLabel text={strings.review.dateOfVisit} style={styles.visitLabel} />
+              <DatePicker date={date} onDateChange={setDate} mode="date" maximumDate={new Date()} />
               <Spacer />
               <ErrorView errors={[formError]} />
               {formError ? <Spacer /> : <></>}
               <Button
-                title={isUpdate ? strings.restaurant.updateReview : strings.restaurant.addReview}
+                title={isUpdate ? strings.review.updateReview : strings.review.addReview}
                 onPress={addReviewPressed}
               />
             </View>
@@ -131,6 +137,5 @@ ReviewModal.propTypes = {
   onClose: PropTypes.func,
   onSubmit: PropTypes.func,
   isUpdate: PropTypes.bool,
-  initialRating: PropTypes.number.isRequired,
-  initialText: PropTypes.string.isRequired,
+  initialData: PropTypes.object,
 };

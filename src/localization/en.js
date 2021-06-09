@@ -26,16 +26,19 @@ export const en = {
     noUserFound: 'No user found...',
     deleteMessage: 'Are you sure, you want to delete this user?',
   },
-  restaurant: {
-    noRestaurant: 'No restaurant found...',
-    noReview: 'No review so far...',
-    me: 'Me',
-    reply: 'Reply',
+  review: {
     reviewTitle: 'Write a review',
     addReview: 'Add review',
     updateReview: 'Update review',
     enterText: 'Enter Text',
-    textValidation: 'Please enter comment.',
+    titleValidation: 'Please enter comment.',
+    dateOfVisit: 'Please select date of visit:',
+    visitLabel: 'Visited on',
+  },
+  restaurant: {
+    noRestaurant: 'No restaurant found...',
+    noReview: 'No review so far...',
+    reply: 'Reply',
     adminAlert: {
       title: 'Edit or delete?',
       messageComment: 'You can either edit or delete this comment',

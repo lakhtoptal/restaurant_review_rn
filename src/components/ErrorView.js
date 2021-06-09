@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function ErrorView({ errors }) {
+export const ErrorView = ({ errors }) => {
   const { colors } = useTheme();
 
   if (errors.length === 0) {
@@ -31,7 +31,7 @@ export function ErrorView({ errors }) {
       ))}
     </View>
   );
-}
+};
 
 ErrorView.propTypes = {
   errors: PropTypes.array.isRequired,

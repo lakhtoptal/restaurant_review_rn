@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function Button({ style, textStyle, title, ...rest }) {
+export const Button = ({ style, textStyle, title, ...rest }) => {
   const { colors } = useTheme();
 
   return (
@@ -23,7 +23,7 @@ export function Button({ style, textStyle, title, ...rest }) {
       <Text style={[{ color: colors.text }, typography.label, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
-}
+};
 
 Button.propTypes = {
   style: PropTypes.object,

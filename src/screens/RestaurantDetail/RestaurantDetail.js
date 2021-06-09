@@ -66,8 +66,7 @@ export const RestaurantDetail = () => {
     setUpdateReview(null);
   };
 
-  const sendReview = (title, rating) => {
-    let payload = { title, rating };
+  const sendReview = (payload) => {
     if (updateReview) {
       payload.id = updateReview.id;
     } else {
@@ -112,7 +111,7 @@ export const RestaurantDetail = () => {
         ListFooterComponent={() =>
           enableReview ? (
             <View style={styles.reviewButton}>
-              <Button onPress={reviewButtonPressed} title={strings.restaurant.reviewTitle} />
+              <Button onPress={reviewButtonPressed} title={strings.review.reviewTitle} />
             </View>
           ) : (
             <></>
@@ -125,7 +124,6 @@ export const RestaurantDetail = () => {
             activeComment={updateComment}
             activeReview={updateReview || reviewToReply}
             review={item}
-            restaurant={restaurant}
             onReply={onReply}
             onUpdate={onUpdate}
             onDelete={onDelete}
@@ -146,8 +144,7 @@ export const RestaurantDetail = () => {
         onClose={closeReviewModal}
         onSubmit={sendReview}
         isUpdate={!!updateReview}
-        initialRating={updateReview ? updateReview.rating : 1}
-        initialText={updateReview ? updateReview.title : ''}
+        initialData={updateReview || null}
       />
     </>
   );
