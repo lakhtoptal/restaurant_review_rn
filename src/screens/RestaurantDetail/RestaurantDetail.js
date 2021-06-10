@@ -105,11 +105,11 @@ export const RestaurantDetail = () => {
         ListHeaderComponent={() => (
           <View style={styles.infoContainer}>
             <View style={styles.nameContainer}>
-              <TextLabel text={name} style={styles.nameLabel} />
+              <TextLabel style={styles.nameLabel} text={name} />
               {numberOfRatings > 0 && <RatingLabel rating={averageRating} />}
             </View>
             <TextLabel text={description} />
-            <TextLabel text={'Reviews:'} style={styles.reviewsLabel} />
+            <TextLabel style={styles.reviewsLabel} text={'Reviews:'} />
           </View>
         )}
         sections={sections}

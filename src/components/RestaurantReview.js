@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useTheme } from '@react-navigation/native';
 import { CommentView, TextLabel } from '@/components';
 import { spacing } from '@/theme';
 import { strings } from '@/localization';

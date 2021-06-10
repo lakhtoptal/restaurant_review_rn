@@ -1,8 +1,8 @@
-import { useTheme } from '@react-navigation/native';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
-import { TextLabel } from './TextLabel';
+import { useTheme } from '@react-navigation/native';
+import { TextLabel } from '@/components';
 
 const createStyles = ({ colors }) =>
   StyleSheet.create({

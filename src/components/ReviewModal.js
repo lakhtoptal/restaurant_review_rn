@@ -1,15 +1,15 @@
-import { useTheme } from '@react-navigation/native';
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Modal, SafeAreaView, StyleSheet, TextInput, View } from 'react-native';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-native-date-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import moment from 'moment';
+import { useTheme } from '@react-navigation/native';
 import { Button, ErrorView, Spacer, StarRating, TextLabel } from '@/components';
+import { PlatformHelper } from '@/constants';
 import { shadow, spacing } from '@/theme';
 import { strings } from '@/localization';
-import { PlatformHelper } from '@/constants';
 
 const createStyles = ({ colors }) =>
   StyleSheet.create({
@@ -98,7 +98,7 @@ export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData 
                 size={30}
                 style={styles.closeButton}
               />
-              <TextLabel text={strings.review.reviewTitle} style={styles.titleHeader} />
+              <TextLabel style={styles.titleHeader} text={strings.review.reviewTitle} />
               <StarRating rating={rating} setRating={setRating} />
               <Spacer />
               <TextInput
@@ -112,7 +112,7 @@ export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData 
                 maxLength={500}
               />
               <Spacer />
-              <TextLabel text={strings.review.dateOfVisit} style={styles.visitLabel} />
+              <TextLabel style={styles.visitLabel} text={strings.review.dateOfVisit} />
               <DatePicker
                 date={date}
                 onDateChange={setDate}

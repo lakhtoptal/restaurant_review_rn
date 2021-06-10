@@ -1,22 +1,27 @@
-import { useTheme } from '@react-navigation/native';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { useTheme } from '@react-navigation/native';
+import { TextLabel } from '@/components';
 import { spacing, typography } from '@/theme';
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    marginBottom: spacing.xs / 2,
-    textAlign: 'center',
-  },
-});
+const createStyles = (colors) =>
+  StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    text: {
+      marginBottom: spacing.xs / 2,
+      textAlign: 'center',
+      color: colors.error,
+    },
+  });
 
 export const ErrorView = ({ errors }) => {
   const { colors } = useTheme();
+
+  const styles = createStyles(colors);
 
   if (errors.length === 0) {
     return null;
@@ -25,9 +30,7 @@ export const ErrorView = ({ errors }) => {
   return (
     <View style={styles.container}>
       {errors.map((error) => (
-        <Text key={error} style={[typography.error, styles.text, { color: colors.error }]}>
-          {error}
-        </Text>
+        <TextLabel key={error} style={[styles.text, typography.error]} text={error} />
       ))}
     </View>
   );

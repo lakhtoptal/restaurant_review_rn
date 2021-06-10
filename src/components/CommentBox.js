@@ -1,21 +1,21 @@
 import React, { useRef, useState } from 'react';
+import { Animated, Keyboard, StyleSheet, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import { useTheme } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { Animated, Keyboard, StyleSheet, TextInput } from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { strings } from '@/localization';
 import { shadow, spacing } from '@/theme';
 import { useKeyboard } from '@/hooks';
 import { PlatformHelper } from '@/constants';
 
-const createStyles = ({ colors }) =>
+const createStyles = (colors) =>
   StyleSheet.create({
     replyContainer: {
+      alignItems: 'flex-end',
       backgroundColor: colors.background,
       position: 'absolute',
       flexDirection: 'row',
-      alignItems: 'flex-end',
       paddingBottom: spacing.xs,
       width: PlatformHelper.windowWidth,
       ...shadow.top,
@@ -44,13 +44,13 @@ const createStyles = ({ colors }) =>
   });
 
 export const CommentBox = ({ value, onCancel, onSubmit }) => {
-  const yAnim = useRef(new Animated.Value(0)).current;
-
   const [message, setMessage] = useState(value);
   const { duration, keyboardHeight } = useKeyboard();
   const tabBarHeight = useBottomTabBarHeight();
   const { colors } = useTheme();
-  const styles = createStyles({ colors });
+  const styles = createStyles(colors);
+
+  const yAnim = useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
     Animated.timing(yAnim, {

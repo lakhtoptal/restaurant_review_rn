@@ -1,17 +1,17 @@
-import { useNavigation, useTheme } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { StyleSheet, Text, useColorScheme } from 'react-native';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { StyleSheet, useColorScheme } from 'react-native';
 import PropTypes from 'prop-types';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { useUpsertUserForm } from '@/hooks';
+import { Button, ErrorView, FormContainer, TextField, TextLabel } from '@/components';
+import { PlatformHelper } from '@/constants';
+import { strings } from '@/localization';
 import { register, TYPES } from '@/state/actions/AuthenticationActions';
 import { updateUser, TYPES as USER_TYPES } from '@/state/actions/UserActions';
-import { Button, ErrorView, FormContainer, TextField } from '@/components';
-import { strings } from '@/localization';
 import { errorsSelector } from '@/state/selectors/ErrorSelectors';
 import { isLoadingSelector } from '@/state/selectors/StatusSelectors';
-import { PlatformHelper } from '@/constants';
 import { spacing } from '@/theme';
 
 const createStyles = ({ colors }) =>
@@ -22,7 +22,6 @@ const createStyles = ({ colors }) =>
     label: {
       left: spacing.xs,
       marginBottom: spacing.xs,
-      color: colors.text,
       opacity: 0.7,
     },
     dropDownPicker: {
@@ -76,7 +75,7 @@ export const UpsertUserForm = ({ isUpdate }) => {
           value={field.value}
         />
       ))}
-      <Text style={styles.label}>{rolePicker.placeholder}</Text>
+      <TextLabel text={rolePicker.placeholder} style={styles.label} />
       <DropDownPicker
         open={rolePicker.open}
         value={rolePicker.value}

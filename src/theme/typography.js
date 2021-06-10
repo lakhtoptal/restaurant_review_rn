@@ -17,4 +17,8 @@ export const typography = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
   },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });

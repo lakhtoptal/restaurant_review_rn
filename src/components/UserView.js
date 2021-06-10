@@ -47,14 +47,14 @@ export const UserView = ({ user, onEditUser, onDeleteUser }) => {
       <View style={styles.rowContainer}>
         <View style={styles.textContainer}>
           <Spacer>
-            <TextLabel text={`${firstName} ${lastName}`} style={styles.nameLabel} />
+            <TextLabel style={styles.nameLabel} text={`${firstName} ${lastName}`} />
           </Spacer>
           <Spacer style={styles.descriptionSpacer}>
             <TextLabel
-              text={`${strings.user.username}: ${username}`}
               style={styles.descriptionLabel}
+              text={`${strings.user.username}: ${username}`}
             />
-            <TextLabel text={`${strings.user.role}: ${role}`} style={styles.descriptionLabel} />
+            <TextLabel style={styles.descriptionLabel} text={`${strings.user.role}: ${role}`} />
           </Spacer>
         </View>
         <Spacer>

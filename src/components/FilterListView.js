@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   View,
   StyleSheet,
@@ -8,13 +7,14 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import PropTypes from 'prop-types';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useTheme } from '@react-navigation/native';
 import { TextLabel } from '@/components';
-import { spacing } from '@/theme';
+import { spacing, typography } from '@/theme';
 import { strings } from '@/localization';
 
-const createStyles = ({ colors }) =>
+const createStyles = (colors) =>
   StyleSheet.create({
     modalContainer: {
       marginTop: 'auto',
@@ -34,8 +34,7 @@ const createStyles = ({ colors }) =>
       top: spacing.s,
     },
     headerTitle: {
-      fontSize: 20,
-      fontWeight: 'bold',
+      ...typography.headerTitle,
       margin: spacing.s,
     },
     filterButton: (selected) => ({
@@ -51,7 +50,7 @@ const createStyles = ({ colors }) =>
 
 export const FilterListView = ({ filters, selectedFilters, visible, onClose, onFilterPress }) => {
   const { colors } = useTheme();
-  const styles = createStyles({ colors });
+  const styles = createStyles(colors);
 
   return (
     <Modal animationType="slide" transparent visible={visible} onRequestClose={onClose}>
@@ -59,7 +58,7 @@ export const FilterListView = ({ filters, selectedFilters, visible, onClose, onF
         <View style={styles.backTouch} />
       </TouchableWithoutFeedback>
       <SafeAreaView style={styles.modalContainer} onPress={onClose}>
-        <TextLabel text={strings.restaurant.filter.title} style={styles.headerTitle} />
+        <TextLabel style={styles.headerTitle} text={strings.restaurant.filter.title} />
         <AntDesign
           name="close"
           size={24}
@@ -75,7 +74,7 @@ export const FilterListView = ({ filters, selectedFilters, visible, onClose, onF
               style={styles.filterButton(selected)}
               onPress={() => onFilterPress && onFilterPress(filter.value)}
             >
-              <TextLabel text={filter.title} style={styles.textLabel(selected)} />
+              <TextLabel style={styles.textLabel(selected)} text={filter.title} />
             </TouchableOpacity>
           );
         })}

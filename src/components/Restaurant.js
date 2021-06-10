@@ -41,10 +41,10 @@ export const Restaurant = ({ restuarantInfo, onRestaurantPress }) => {
     <TouchableOpacity style={styles.container} onPress={() => onRestaurantPress(restuarantInfo)}>
       <View style={styles.textContainer}>
         <View style={styles.nameContainer}>
-          <TextLabel text={name} style={styles.nameLabel} />
+          <TextLabel style={styles.nameLabel} text={name} />
           {numberOfRatings > 0 && <RatingLabel rating={averageRating} />}
         </View>
-        <TextLabel text={description} style={styles.descriptionLabel} />
+        <TextLabel style={styles.descriptionLabel} text={description} />
       </View>
     </TouchableOpacity>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
-import moment from 'moment';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { StarRating, TextLabel } from '@/components';
 import { spacing } from '@/theme';
 import { strings } from '@/localization';
@@ -62,15 +62,15 @@ export const CommentView = ({
     <TouchableOpacity style={styles.container} disabled={!enablePress} onPress={onPress}>
       <View style={styles.textContainer}>
         <View style={styles.nameContainer}>
-          <TextLabel text={commentObject.author} style={styles.nameLabel} />
+          <TextLabel style={styles.nameLabel} text={commentObject.author} />
           {isReview && (
             <View style={styles.ratingContainer}>
               <StarRating rating={commentObject.rating} readOnly />
             </View>
           )}
         </View>
-        <TextLabel text={`${strings.review.visitLabel} ${formatDate}`} style={styles.dateLabel} />
-        <TextLabel text={commentObject.title} style={styles.commentLabel} />
+        <TextLabel style={styles.dateLabel} text={`${strings.review.visitLabel} ${formatDate}`} />
+        <TextLabel style={styles.commentLabel} text={commentObject.title} />
       </View>
     </TouchableOpacity>
   );

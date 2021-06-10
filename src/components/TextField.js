@@ -1,8 +1,9 @@
-import { useTheme } from '@react-navigation/native';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, ViewPropTypes } from 'react-native';
+import { StyleSheet, TextInput, View, ViewPropTypes } from 'react-native';
+import PropTypes from 'prop-types';
+import { useTheme } from '@react-navigation/native';
 import { spacing } from '@/theme';
+import { TextLabel } from '@/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,9 +17,10 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   label: {
+    left: spacing.xs,
+    opacity: 0.7,
     position: 'absolute',
     top: 0,
-    left: spacing.xs,
   },
 });
 
@@ -33,14 +35,9 @@ export const TextField = ({
 }) => {
   const { colors } = useTheme();
 
-  const placeholderStyle = {
-    color: colors.text,
-    opacity: 0.7,
-  };
-
   return (
     <View style={[styles.container, containerStyle]}>
-      {placeholder && <Text style={[styles.label, placeholderStyle]}>{placeholder}</Text>}
+      {placeholder && <TextLabel style={styles.label} text={placeholder} />}
       <TextInput style={[styles.input, { color: colors.text }, style]} value={value} {...rest} />
     </View>
   );

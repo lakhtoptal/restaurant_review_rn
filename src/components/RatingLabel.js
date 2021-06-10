@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import { useTheme } from '@react-navigation/native';
-import { spacing } from '@/theme';
 import { TextLabel } from '@/components';
+import { spacing } from '@/theme';
 
 const createStyles = (colors) =>
   StyleSheet.create({
@@ -28,7 +28,7 @@ export const RatingLabel = ({ rating }) => {
 
   return (
     <View style={styles.ratingContainer}>
-      <TextLabel text={rating} style={styles.ratingText} />
+      <TextLabel style={styles.ratingText} text={rating} />
     </View>
   );
 };

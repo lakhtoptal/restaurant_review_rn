@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
+import { useTheme } from '@react-navigation/native';
+import { typography } from '@/theme';
 
 export const TextLabel = ({ text, style, ...rest }) => {
   const { colors } = useTheme();
 
   return (
-    <Text style={[{ color: colors.text, ...style }]} {...rest}>
+    <Text style={[{ color: colors.text }, typography.label, style]} {...rest}>
       {text}
     </Text>
   );
