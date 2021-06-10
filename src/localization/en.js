@@ -45,6 +45,11 @@ export const en = {
       messageReview: 'You can either edit or delete this review',
     },
     deleteMessage: 'Are you sure, you want to delete this restaurant?',
+    detail: {
+      topRated: 'Highest Rated Review:',
+      lowRated: 'Lowest Rated Review:',
+      latestReviews: 'Latest Reviews:',
+    },
   },
   createRestaurant: {
     name: 'Name',

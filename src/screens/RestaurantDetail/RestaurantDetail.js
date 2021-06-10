@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, SectionList } from 'react-native';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRoute, useTheme } from '@react-navigation/native';
@@ -33,7 +33,7 @@ export const RestaurantDetail = () => {
   const isPublicUser = useSelector(isPublicUserSelector);
   const params = useRoute().params;
   const restaurant = useSelector(findRestaurant(params.data.id));
-  const { name, description, reviews, numberOfRatings, averageRating } = restaurant;
+  const { averageRating, name, description, reviews, sections, numberOfRatings } = restaurant;
 
   // Show navigation options.
   useRestaurantDetailNav(restaurant, colors);
@@ -101,7 +101,7 @@ export const RestaurantDetail = () => {
 
   return (
     <>
-      <FlatList
+      <SectionList
         ListHeaderComponent={() => (
           <View style={styles.infoContainer}>
             <View style={styles.nameContainer}>
@@ -112,16 +112,7 @@ export const RestaurantDetail = () => {
             <TextLabel text={'Reviews:'} style={styles.reviewsLabel} />
           </View>
         )}
-        ListFooterComponent={() =>
-          enableReview ? (
-            <View style={styles.reviewButton}>
-              <Button onPress={reviewButtonPressed} title={strings.review.reviewTitle} />
-            </View>
-          ) : (
-            <></>
-          )
-        }
-        data={reviews}
+        sections={sections}
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <RestaurantReview
@@ -133,9 +124,21 @@ export const RestaurantDetail = () => {
             onDelete={onDelete}
           />
         )}
+        renderSectionHeader={({ section: { title } }) => (
+          <View style={styles.headerContainer}>
+            <TextLabel text={title} style={styles.headerText} />
+          </View>
+        )}
         ListEmptyComponent={() => <NoItemsView text={strings.restaurant.noReview} />}
         keyExtractor={(item) => item.id}
       />
+      {enableReview ? (
+        <View style={styles.reviewButton}>
+          <Button onPress={reviewButtonPressed} title={strings.review.reviewTitle} />
+        </View>
+      ) : (
+        <></>
+      )}
       {(reviewToReply || updateComment) && (
         <CommentBox
           onCancel={onCancelComment}

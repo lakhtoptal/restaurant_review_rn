@@ -33,6 +33,14 @@ export const createStyles = ({ colors }) =>
     },
     reviewButton: {
       margin: spacing.s,
-      flex: 1,
+    },
+    headerContainer: {
+      padding: spacing.s,
+      backgroundColor: colors.secondary,
+    },
+    headerText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: colors.background,
     },
   });
