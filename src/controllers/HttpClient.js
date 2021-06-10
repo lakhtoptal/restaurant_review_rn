@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { API_URL } from 'react-native-dotenv';
 import { strings } from '@/localization';
 import { store } from '@/state/store';
+
+const API_URL = 'https://restaurant-reviews-react-app.herokuapp.com';
 
 const client = axios.create({
   baseURL: API_URL,
