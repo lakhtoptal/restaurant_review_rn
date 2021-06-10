@@ -50,6 +50,11 @@ export const en = {
       lowRated: 'Lowest Rated Review:',
       latestReviews: 'Latest Reviews:',
     },
+    filter: {
+      title: 'Filter by:',
+      noRating: 'No Rating',
+      starRating: 'Star Rating',
+    },
   },
   createRestaurant: {
     name: 'Name',

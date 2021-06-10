@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, SectionList } from 'react-native';
+import { View, SectionList } from 'react-native';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRoute, useTheme } from '@react-navigation/native';

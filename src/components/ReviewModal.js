@@ -52,6 +52,7 @@ const createStyles = ({ colors }) =>
       padding: spacing.xs,
       borderWidth: StyleSheet.hairlineWidth,
       backgroundColor: colors.primary,
+      color: colors.text,
     },
   });
 

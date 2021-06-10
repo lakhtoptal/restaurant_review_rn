@@ -1,4 +1,4 @@
 export { useKeyboard } from '@/hooks/useKeyboard';
-export { useRestaurantsNav } from '@/hooks/useRestaurantsNav';
+export { useRestaurantList } from '@/hooks/useRestaurantList';
 export { useRestaurantDetailNav } from '@/hooks/useRestaurantDetailNav';
 export { useUpsertUserForm } from '@/hooks/useUpsertUserForm';

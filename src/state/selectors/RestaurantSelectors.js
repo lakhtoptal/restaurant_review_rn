@@ -4,6 +4,20 @@ import { strings } from '@/localization';
 
 export const getRestaurants = (state) => state.restaurant.list.map(modifyRestaurant);
 
+// Fetch unique filters available for restaurant list.
+export const getRestaurantFilters = createSelector(getRestaurants, (restaurants) => {
+  const ratings = _.uniq(restaurants.map((e) => e.averageRatingNumber))
+    .sort()
+    .reverse();
+  const filterList = ratings.map((e) => ({
+    title:
+      e <= 0 ? strings.restaurant.filter.noRating : `${e} ${strings.restaurant.filter.starRating}`,
+    value: e,
+  }));
+  return filterList;
+});
+
+// Fetch detail of restaurant with top rated, low rated and all other reviews as sections.
 export const findRestaurant = (id) =>
   createSelector(getRestaurants, (restaurants) => {
     const restaurant = _.find(restaurants, { id });
@@ -46,6 +60,7 @@ const modifyRestaurant = (restaurant) => {
   return {
     ...restaurant,
     averageRating,
+    averageRatingNumber: parseInt(averageRating, 10),
     numberOfRatings,
     reviews: restaurant.reviews.map((review) => ({
       ...review,

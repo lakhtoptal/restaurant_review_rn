@@ -2,6 +2,7 @@ export { Button } from '@/components/Button';
 export { CommentBox } from '@/components/CommentBox';
 export { CommentView } from '@/components/CommentView';
 export { ErrorView } from '@/components/ErrorView';
+export { FilterListView } from '@/components/FilterListView';
 export { FormContainer } from '@/components/FormContainer';
 export { NoItemsView } from '@/components/NoItemsView';
 export { Restaurant } from '@/components/Restaurant';
