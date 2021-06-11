@@ -5,7 +5,7 @@ import { useTheme } from '@react-navigation/native';
 import { TextLabel } from '@/components';
 import { spacing } from '@/theme';
 
-const createStyles = (colors) =>
+const createStyles = ({ colors }) =>
   StyleSheet.create({
     ratingContainer: {
       backgroundColor: colors.secondary,
@@ -23,8 +23,7 @@ const createStyles = (colors) =>
   });
 
 export const RatingLabel = ({ rating }) => {
-  const { colors } = useTheme();
-  const styles = createStyles(colors);
+  const styles = createStyles(useTheme());
 
   return (
     <View style={styles.ratingContainer}>

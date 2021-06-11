@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { shadow, spacing } from '@/theme';
+import { shadow, spacing, typography } from '@/theme';
 
-export const createStyles = ({ colors }) =>
+export const createStyles = (colors) =>
   StyleSheet.create({
     container: {
       backgroundColor: colors.background,
@@ -22,13 +22,11 @@ export const createStyles = ({ colors }) =>
       marginBottom: spacing.xs,
     },
     nameLabel: {
-      fontSize: 18,
-      fontWeight: '600',
+      ...typography.title,
       marginBottom: spacing.xs,
     },
     reviewsLabel: {
-      fontSize: 17,
-      fontWeight: 'bold',
+      ...typography.title,
       marginTop: spacing.m,
     },
     reviewButton: {
@@ -39,8 +37,7 @@ export const createStyles = ({ colors }) =>
       backgroundColor: colors.secondary,
     },
     headerText: {
-      fontSize: 20,
-      fontWeight: 'bold',
+      ...typography.headerTitle,
       color: colors.background,
     },
   });

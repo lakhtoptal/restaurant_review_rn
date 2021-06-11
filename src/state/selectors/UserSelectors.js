@@ -2,7 +2,9 @@ import _ from 'lodash';
 import { createSelector } from 'reselect';
 
 export const getUserSelector = (state) => {
-  return Object.keys(state.user.loggedInUser).length > 0 ? state.user.loggedInUser : null;
+  return state.user.loggedInUser && Object.keys(state.user.loggedInUser).length > 0
+    ? state.user.loggedInUser
+    : null;
 };
 
 const getUserList = (state) => state.user.userList || [];

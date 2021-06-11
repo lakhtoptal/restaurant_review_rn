@@ -21,4 +21,8 @@ export const typography = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  pageTitle: {
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
 });

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import { Spacer } from '@/components';
 import { strings } from '@/localization';
 import { shadow, spacing } from '@/theme';
 import { useKeyboard } from '@/hooks';
@@ -32,18 +33,9 @@ const createStyles = (colors) =>
       margin: spacing.xs,
       marginBottom: spacing.xs / 2,
     },
-    cancelButton: {
-      marginLeft: spacing.xs,
-    },
-    cancelText: {
-      color: colors.text,
-      fontSize: 20,
-      fontWeight: '600',
-      alignSelf: 'flex-end',
-    },
   });
 
-export const CommentBox = ({ value, onCancel, onSubmit }) => {
+export const CommentInputBox = ({ value, onCancel, onSubmit }) => {
   const [message, setMessage] = useState(value);
   const { duration, keyboardHeight } = useKeyboard();
   const tabBarHeight = useBottomTabBarHeight();
@@ -77,31 +69,33 @@ export const CommentBox = ({ value, onCancel, onSubmit }) => {
         onChangeText={setMessage}
         maxLength={500}
       />
-      <Ionicon.Button
-        name="ios-send"
-        size={20}
-        onPress={() => {
-          dismissKeyboard();
-          onSubmit && onSubmit(message);
-        }}
-        color={colors.activeTab}
-        backgroundColor={colors.background}
-      />
-      <Ionicon.Button
-        name="ios-close-sharp"
-        size={20}
-        onPress={() => {
-          dismissKeyboard();
-          onCancel && onCancel();
-        }}
-        color={colors.text}
-        backgroundColor={colors.background}
-      />
+      <Spacer>
+        <Ionicon
+          name="ios-send"
+          size={25}
+          onPress={() => {
+            dismissKeyboard();
+            onSubmit && onSubmit(message);
+          }}
+          color={colors.activeTab}
+        />
+      </Spacer>
+      <Spacer>
+        <Ionicon
+          name="ios-close-sharp"
+          size={25}
+          onPress={() => {
+            dismissKeyboard();
+            onCancel && onCancel();
+          }}
+          color={colors.text}
+        />
+      </Spacer>
     </Animated.View>
   );
 };
 
-CommentBox.propTypes = {
+CommentInputBox.propTypes = {
   value: PropTypes.string,
   onCancel: PropTypes.func,
   onSubmit: PropTypes.func,

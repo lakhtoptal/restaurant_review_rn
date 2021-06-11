@@ -8,10 +8,10 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
 import { Button, ErrorView, Spacer, StarRating, TextLabel } from '@/components';
 import { PlatformHelper } from '@/constants';
-import { shadow, spacing } from '@/theme';
+import { shadow, spacing, typography } from '@/theme';
 import { strings } from '@/localization';
 
-const createStyles = ({ colors }) =>
+const createStyles = (colors) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -38,13 +38,6 @@ const createStyles = ({ colors }) =>
       alignItems: 'center',
       ...shadow.primary,
     },
-    titleHeader: {
-      fontSize: 22,
-      fontWeight: 'bold',
-    },
-    visitLabel: {
-      fontSize: 18,
-    },
     descriptionField: {
       alignSelf: 'stretch',
       minHeight: 30,
@@ -62,7 +55,7 @@ export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData 
   const [formError, setFormError] = useState('');
   const [date, setDate] = useState(new Date());
   const { colors } = useTheme();
-  const styles = createStyles({ colors });
+  const styles = createStyles(colors);
 
   useEffect(() => {
     if (initialData) {
@@ -98,7 +91,7 @@ export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData 
                 size={30}
                 style={styles.closeButton}
               />
-              <TextLabel style={styles.titleHeader} text={strings.review.reviewTitle} />
+              <TextLabel style={typography.pageTitle} text={strings.review.reviewTitle} />
               <StarRating rating={rating} setRating={setRating} />
               <Spacer />
               <TextInput
@@ -112,7 +105,7 @@ export const ReviewModal = ({ visible, onClose, onSubmit, isUpdate, initialData 
                 maxLength={500}
               />
               <Spacer />
-              <TextLabel style={styles.visitLabel} text={strings.review.dateOfVisit} />
+              <TextLabel text={strings.review.dateOfVisit} />
               <DatePicker
                 date={date}
                 onDateChange={setDate}

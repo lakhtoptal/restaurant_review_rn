@@ -1,5 +1,5 @@
 export { Button } from '@/components/Button';
-export { CommentBox } from '@/components/CommentBox';
+export { CommentInputBox } from '@/components/CommentInputBox';
 export { CommentView } from '@/components/CommentView';
 export { ErrorView } from '@/components/ErrorView';
 export { FilterListView } from '@/components/FilterListView';

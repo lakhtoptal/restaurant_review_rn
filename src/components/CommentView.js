@@ -3,7 +3,7 @@ import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { StarRating, TextLabel } from '@/components';
-import { spacing } from '@/theme';
+import { spacing, typography } from '@/theme';
 import { strings } from '@/localization';
 
 const createStyles = ({ colors, isSelected, isReview }) => {
@@ -27,17 +27,14 @@ const createStyles = ({ colors, isSelected, isReview }) => {
       marginBottom: spacing.s,
     },
     nameLabel: {
-      fontSize: 17,
-      fontWeight: 'bold',
+      ...typography.title,
       ...textStyle,
     },
     dateLabel: {
       ...textStyle,
-      fontWeight: '600',
       marginBottom: spacing.xs,
     },
     commentLabel: {
-      fontWeight: '500',
       marginBottom: spacing.xs,
       ...textStyle,
     },

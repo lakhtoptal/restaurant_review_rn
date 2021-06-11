@@ -6,7 +6,7 @@ import { useRoute, useTheme } from '@react-navigation/native';
 import { createStyles } from './RestaurantDetail.styles';
 import {
   Button,
-  CommentBox,
+  CommentInputBox,
   NoItemsView,
   RatingLabel,
   RestaurantReview,
@@ -27,7 +27,7 @@ export const RestaurantDetail = () => {
   const [updateComment, setUpdateComment] = useState(null);
 
   const { colors } = useTheme();
-  const styles = createStyles({ colors });
+  const styles = createStyles(colors);
   const dispatch = useDispatch();
   const user = useSelector(getUserSelector);
   const isPublicUser = useSelector(isPublicUserSelector);
@@ -140,7 +140,7 @@ export const RestaurantDetail = () => {
         <></>
       )}
       {(reviewToReply || updateComment) && (
-        <CommentBox
+        <CommentInputBox
           onCancel={onCancelComment}
           onSubmit={sendComment}
           value={updateComment ? updateComment.title : ''}

@@ -5,7 +5,7 @@ import { useTheme } from '@react-navigation/native';
 import { TextLabel } from '@/components';
 import { spacing, typography } from '@/theme';
 
-const createStyles = (colors) =>
+const createStyles = ({ colors }) =>
   StyleSheet.create({
     container: {
       justifyContent: 'center',
@@ -19,9 +19,7 @@ const createStyles = (colors) =>
   });
 
 export const ErrorView = ({ errors }) => {
-  const { colors } = useTheme();
-
-  const styles = createStyles(colors);
+  const styles = createStyles(useTheme());
 
   if (errors.length === 0) {
     return null;

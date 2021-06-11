@@ -1,7 +1,7 @@
-import { useNavigation, useTheme } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { FlatList, RefreshControl, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { createStyles } from '@/screens/Restaurants/Restaurants.styles';
 import { FilterListView, NoItemsView, Restaurant } from '@/components';
 import { NAVIGATION } from '@/constants';
@@ -21,7 +21,7 @@ export const Restaurants = () => {
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.RESTAURANT], state));
   const error = useSelector((state) => errorsSelector([TYPES.RESTAURANT], state));
 
-  const styles = createStyles({ colors });
+  const styles = createStyles(colors);
 
   useEffect(() => {
     dispatch(getRestaurantList());

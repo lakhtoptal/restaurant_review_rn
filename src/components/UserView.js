@@ -5,10 +5,10 @@ import { useTheme } from '@react-navigation/native';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { TextLabel, Spacer } from '@/components';
-import { shadow, spacing } from '@/theme';
+import { shadow, spacing, typography } from '@/theme';
 import { strings } from '@/localization';
 
-const createStyles = ({ colors }) =>
+const createStyles = (colors) =>
   StyleSheet.create({
     container: {
       justifyContent: 'center',
@@ -25,10 +25,6 @@ const createStyles = ({ colors }) =>
     textContainer: {
       flex: 1,
     },
-    nameLabel: {
-      fontSize: 18,
-      fontWeight: '600',
-    },
     descriptionSpacer: {
       marginTop: 0,
     },
@@ -40,14 +36,14 @@ const createStyles = ({ colors }) =>
 export const UserView = ({ user, onEditUser, onDeleteUser }) => {
   const { firstName, lastName, role, username } = user;
   const { colors } = useTheme();
-  const styles = createStyles({ colors });
+  const styles = createStyles(colors);
 
   return (
     <View style={styles.container}>
       <View style={styles.rowContainer}>
         <View style={styles.textContainer}>
           <Spacer>
-            <TextLabel style={styles.nameLabel} text={`${firstName} ${lastName}`} />
+            <TextLabel style={typography.title} text={`${firstName} ${lastName}`} />
           </Spacer>
           <Spacer style={styles.descriptionSpacer}>
             <TextLabel

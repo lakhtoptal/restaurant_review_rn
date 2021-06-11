@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextLabel } from '@/components';
+import { typography } from '@/theme';
 
 const createStyles = ({ colors }) =>
   StyleSheet.create({
@@ -15,8 +16,7 @@ const createStyles = ({ colors }) =>
     label: (error) => ({
       textAlign: 'center',
       color: error ? colors.error : colors.text,
-      fontSize: 25,
-      fontWeight: 'bold',
+      ...typography.pageTitle,
     }),
   });
 

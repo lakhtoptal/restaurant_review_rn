@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useTheme } from '@react-navigation/native';
 import { shadow, spacing } from '@/theme';
 
-const createStyles = (colors) =>
+const createStyles = ({ colors }) =>
   StyleSheet.create({
     safeArea: {
       flex: 1,
@@ -27,8 +27,7 @@ const createStyles = (colors) =>
   });
 
 export const FormContainer = ({ children, containerStyle }) => {
-  const { colors } = useTheme();
-  const styles = createStyles(colors);
+  const styles = createStyles(useTheme());
 
   return (
     <SafeAreaView style={styles.safeArea}>

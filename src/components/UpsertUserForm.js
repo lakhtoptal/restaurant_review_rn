@@ -3,7 +3,7 @@ import { StyleSheet, useColorScheme } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useNavigation, useTheme } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useUpsertUserForm } from '@/hooks';
 import { Button, ErrorView, FormContainer, TextField, TextLabel } from '@/components';
 import { PlatformHelper } from '@/constants';
@@ -14,22 +14,21 @@ import { errorsSelector } from '@/state/selectors/ErrorSelectors';
 import { isLoadingSelector } from '@/state/selectors/StatusSelectors';
 import { spacing } from '@/theme';
 
-const createStyles = ({ colors }) =>
-  StyleSheet.create({
-    submitButton: {
-      marginTop: spacing.m,
-    },
-    label: {
-      left: spacing.xs,
-      marginBottom: spacing.xs,
-      opacity: 0.7,
-    },
-    dropDownPicker: {
-      height: 40,
-      borderWidth: 0,
-      marginBottom: spacing.m,
-    },
-  });
+const styles = StyleSheet.create({
+  submitButton: {
+    marginTop: spacing.m,
+  },
+  label: {
+    left: spacing.xs,
+    marginBottom: spacing.xs,
+    opacity: 0.7,
+  },
+  dropDownPicker: {
+    height: 40,
+    borderWidth: 0,
+    marginBottom: spacing.m,
+  },
+});
 
 export const UpsertUserForm = ({ isUpdate }) => {
   const [formError, setFormError] = useState('');
@@ -38,7 +37,6 @@ export const UpsertUserForm = ({ isUpdate }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { formFields, rolePicker, apiPayload, checkFormErrors } = useUpsertUserForm(isUpdate);
-  const styles = createStyles(useTheme());
 
   const errors = useSelector(
     (state) => errorsSelector([isUpdate ? USER_TYPES.UPDATE_USER : TYPES.REGISTER], state),

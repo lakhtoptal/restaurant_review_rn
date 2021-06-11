@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { RatingLabel, TextLabel } from '@/components';
-import { shadow, spacing } from '@/theme';
+import { shadow, spacing, typography } from '@/theme';
 
 const createStyles = ({ colors }) =>
   StyleSheet.create({
@@ -22,10 +22,6 @@ const createStyles = ({ colors }) =>
       flexDirection: 'row',
       marginBottom: spacing.xs,
     },
-    nameLabel: {
-      fontSize: 18,
-      fontWeight: '600',
-    },
     descriptionLabel: {
       marginBottom: spacing.xs,
       maxHeight: 120,
@@ -34,14 +30,13 @@ const createStyles = ({ colors }) =>
 
 export const Restaurant = ({ restuarantInfo, onRestaurantPress }) => {
   const { name, description, averageRating, numberOfRatings } = restuarantInfo;
-  const theme = useTheme();
-  const styles = createStyles(theme);
+  const styles = createStyles(useTheme());
 
   return (
     <TouchableOpacity style={styles.container} onPress={() => onRestaurantPress(restuarantInfo)}>
       <View style={styles.textContainer}>
         <View style={styles.nameContainer}>
-          <TextLabel style={styles.nameLabel} text={name} />
+          <TextLabel style={typography.title} text={name} />
           {numberOfRatings > 0 && <RatingLabel rating={averageRating} />}
         </View>
         <TextLabel style={styles.descriptionLabel} text={description} />

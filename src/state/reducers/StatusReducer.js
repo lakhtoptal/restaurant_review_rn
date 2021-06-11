@@ -1,13 +1,8 @@
-import { TYPES } from '@/state/actions/GlobalActions';
 import { STATUS } from '@/constants';
 
 const { ERROR, LOADING, NOT_STARTED, SUCCESS } = STATUS;
 
 export const statusReducer = (state = {}, { type }) => {
-  if (type === TYPES.GLOBAL_RESET) {
-    return {};
-  }
-
   const matchesStart = /(.*)_(REQUEST)/.exec(type);
   const matchesError = /(.*)_(ERROR)/.exec(type);
   const matchesReset = /(.*)_(RESET)/.exec(type);

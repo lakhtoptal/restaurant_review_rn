@@ -3,8 +3,9 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { useTheme } from '@react-navigation/native';
 import { TextLabel } from '@/components';
+import { typography } from '@/theme';
 
-const createStyles = (colors) =>
+const createStyles = ({ colors }) =>
   StyleSheet.create({
     button: {
       alignItems: 'center',
@@ -18,11 +19,10 @@ const createStyles = (colors) =>
   });
 
 export const Button = ({ style, textStyle, title, ...rest }) => {
-  const { colors } = useTheme();
-  const styles = createStyles(colors);
+  const styles = createStyles(useTheme());
   return (
     <TouchableOpacity style={[styles.button, style]} {...rest}>
-      <TextLabel style={textStyle} text={title} />
+      <TextLabel style={[typography.label, textStyle]} text={title} />
     </TouchableOpacity>
   );
 };

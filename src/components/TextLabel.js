@@ -8,7 +8,7 @@ export const TextLabel = ({ text, style, ...rest }) => {
   const { colors } = useTheme();
 
   return (
-    <Text style={[{ color: colors.text }, typography.label, style]} {...rest}>
+    <Text style={[{ color: colors.text }, typography.text, style]} {...rest}>
       {text}
     </Text>
   );

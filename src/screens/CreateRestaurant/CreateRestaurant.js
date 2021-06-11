@@ -1,6 +1,6 @@
-import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 import { upsertRestaurant, TYPES } from '@/state/actions/RestaurantActions';
 import { Button, ErrorView, FormContainer, TextField } from '@/components';
 import { checkRestaurantFormErrors, NAVIGATION } from '@/constants';

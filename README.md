@@ -34,7 +34,7 @@ This project follows a very simple project structure:
   - `components`: Folder to store any common component that you use through your app (such as a generic button)
   - `constants`: Folder to store any kind of constant that you have.
   - `controllers`: Folder to store all your network logic (you should have one controller per resource).
-  - `hooks`: Folder to custom hooks for particular screeb related or generic hooks to use anywhere.
+  - `hooks`: Folder to custom hooks for particular screen related or generic hooks to use anywhere.
   - `localization`: Folder to store the languages files.
   - `navigation`: Folder to store the navigators.
   - `screens`: Folder that contains all your application screens/features.

@@ -1,7 +1,7 @@
-import { useNavigation, useTheme } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { Alert, FlatList, RefreshControl, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { createStyles } from '@/screens/Users/Users.styles';
 import { NoItemsView, UserView } from '@/components';
 import { NAVIGATION } from '@/constants';
@@ -14,13 +14,12 @@ import { errorsSelector } from '@/state/selectors/ErrorSelectors';
 export const Users = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const { colors } = useTheme();
 
   const userList = useSelector(getUserListSelector);
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.USER], state));
   const error = useSelector((state) => errorsSelector([TYPES.USER], state));
 
-  const styles = createStyles({ colors });
+  const styles = createStyles(useTheme());
 
   useEffect(() => {
     dispatch(getUserList());
