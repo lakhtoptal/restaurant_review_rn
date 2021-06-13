@@ -95,7 +95,8 @@ export const en = {
     newUser: 'New user? Register Here',
   },
   register: {
-    button: 'Register',
+    register: 'Register',
+    update: 'Update User',
     backToLogin: 'Back to login',
   },
   profile: {

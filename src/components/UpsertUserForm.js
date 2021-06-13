@@ -89,7 +89,9 @@ export const UpsertUserForm = ({ isUpdate }) => {
         disabled={isLoading}
         onPress={handleSubmit}
         style={styles.submitButton}
-        title={isLoading ? strings.common.loading : strings.register.button}
+        title={
+          isLoading ? strings.common.loading : strings.register[isUpdate ? 'update' : 'register']
+        }
       />
       {!isUpdate && (
         <Button
