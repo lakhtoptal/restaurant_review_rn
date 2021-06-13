@@ -25,6 +25,34 @@ Built in React-native. It provides a clear and organized structure, core depende
 	•	Restaurant List can be filtered by Rating
 
 
+## App screenshots
+---
+- Authentication screens
+
+<p align="center">
+  <img src="app_screenshots/LoginForm.png" width= 250>   <img src="app_screenshots/RegisterForm.png" width= 250>
+</p>
+
+---
+- Restaurant screens
+
+<p align="center">
+  <img src="app_screenshots/RestaurantList.png" width= 250> <img src="app_screenshots/RestaurantFilters.png" width= 250> <img src="app_screenshots/RestaurantDetail.png" width= 250> <img src="app_screenshots/UpdateRestaurant.png" width= 250> <img src="app_screenshots/DeleteRestaurantAlert.png" width= 250> <img src="app_screenshots/UpdateReview.png" width= 250> <img src="app_screenshots/UpdateComment.png" width= 250>
+</p>
+
+---
+- User screens
+
+<p align="center">
+  <img src="app_screenshots/UserList.png" width= 250> <img src="app_screenshots/UserDeleteAlert.png" width= 250> <img src="app_screenshots/EditUserForm.png" width= 250>
+</p>
+
+- Profile screen
+
+<p align="center">
+  <img src="app_screenshots/ProfileScreen.png" width= 250>
+</p>
+
 ## Prerequisites
 
 - [Node.js > 12](https://nodejs.org) and npm (Recommended: Use [nvm](https://github.com/nvm-sh/nvm))
