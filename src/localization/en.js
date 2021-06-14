@@ -84,7 +84,6 @@ export const en = {
     },
     userRoles: {
       user: 'User',
-      admin: 'Admin',
       owner: 'Owner',
     },
     formError: 'Please enter',

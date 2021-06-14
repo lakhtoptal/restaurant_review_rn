@@ -65,7 +65,6 @@ export const useUpsertUserForm = (isUpdate) => {
     items: [
       { label: authentication.userRoles.user, value: 'user' },
       { label: authentication.userRoles.owner, value: 'owner' },
-      { label: authentication.userRoles.admin, value: 'admin' },
     ],
   };
 
